@@ -20,7 +20,7 @@ Create {{FILEPATH}} with a production-ready router implementation that meets the
 - Implement a proper 404/NotFound route for unmatched paths
 
 ## Implementation Details for React
-- Wrap the application with <BrowserRouter> (or alternative if needed)
+- IMPORTANT: For App.jsx/tsx files, DO NOT include BrowserRouter! The main.jsx/tsx will already provide that.
 - Define <Routes> with one <Route> per page from {{PAGE_ROUTES}}
 - Implement React.lazy for code-splitting:
   - Derive import paths by replacing leading "src/" with "./"

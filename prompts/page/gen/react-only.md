@@ -46,15 +46,17 @@
 ```
 
 ## React Import Guidelines:
-- Import only from "react" and "react-router-dom" when needed
+- ALWAYS include `import React from 'react';` at the top of every JSX/TSX file
+- Import additional React features as needed: `import { useState, useEffect, useRef } from 'react';`
+- For routing, import from react-router-dom: `import { Link, useParams, useNavigate } from 'react-router-dom';`
+- Import component-specific CSS if needed: `import './ComponentName.css';`
+- Import local components using relative paths: `import ComponentName from '../components/ComponentName';`
 - Use modern React Router v6+ API (compatible with v7) for navigation:
   - `<Link to="/...">` instead of `<a href="/...">`
   - `<NavLink>` for navigation with active states
   - `<Outlet>` for nested routes where appropriate
   - Use `useNavigate()` hook for programmatic navigation
   - Use `useParams()` for accessing route parameters
-- Optimize imports by destructuring only what you need:
-  - `import { useState, useEffect } from 'react'` instead of `import React from 'react'`
 
 ## React Performance Considerations:
 - Implement `React.memo()` for components that render often but with the same props
@@ -62,3 +64,9 @@
 - Use the `useMemo` hook for expensive calculations
 - Consider implementing virtualization for long lists using libraries like react-window
 - Avoid anonymous functions in render methods where possible
+
+## IMPORTANT REQUIREMENTS:
+1. ALWAYS include `import React from 'react';` at the top of every JSX/TSX file
+2. Do NOT use BrowserRouter or Router components in page components
+3. Make sure all component exports use `export default` syntax
+4. Include all necessary imports for hooks and components you use
