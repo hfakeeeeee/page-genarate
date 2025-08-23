@@ -1,0 +1,32 @@
+{
+  "framework": "React",
+  "language": "JS",
+  "description": "A modern online bookstore designed for readers to easily browse and search for books. The site targets book enthusiasts seeking a seamless and intuitive way to discover new titles. Key features include a searchable catalog, book detail views, and smooth navigation between sections.",
+  "designNote": "The website will feature a clean, contemporary design with a focus on book covers and easy navigation. A neutral color palette and ample white space will ensure content stands out, while interactive elements provide a modern user experience.",
+  "pages": [
+    {
+      "name": "HomePage",
+      "route": "/",
+      "filepath": "src/pages/HomePage.jsx",
+      "purpose": "Acts as the main landing page, introducing users to the bookstore and showcasing featured or popular books.",
+      "usage": "Users can browse highlighted books and navigate to book details or the search page for further exploration.",
+      "designNote": "Features a hero section, a carousel or grid of featured books, and clear navigation to search and book details."
+    },
+    {
+      "name": "SearchPage",
+      "route": "/search",
+      "filepath": "src/pages/SearchPage.jsx",
+      "purpose": "Enables users to search for books by title, author, or genre, and filter results as needed.",
+      "usage": "Users enter search queries or select filters to refine results, then click on a book to view its details.",
+      "designNote": "Prominent search bar at the top, filter options on the side, and a responsive grid of book results."
+    },
+    {
+      "name": "BookDetailPage",
+      "route": "/book/:id",
+      "filepath": "src/pages/BookDetailPage.jsx",
+      "purpose": "Displays detailed information about a selected book, including description, author, and related titles.",
+      "usage": "Users access this page by selecting a book from the home or search pages, and can navigate back or continue browsing.",
+      "designNote": "Large book cover image, clear typography for book details, and sections for description, author info, and related books."
+    }
+  ]
+}

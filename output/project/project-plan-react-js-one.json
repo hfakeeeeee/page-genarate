@@ -1,0 +1,16 @@
+{
+  "framework": "React",
+  "language": "JS",
+  "description": "This is a modern online bookstore designed for book lovers to easily browse and search for books. The site features a user-friendly interface with intuitive navigation and robust search capabilities. Users can explore featured books, view details, and discover new titles through efficient search functionality.",
+  "designNote": "The website will have a clean, contemporary look with a focus on book covers and easy navigation. Neutral colors and ample whitespace will be used to create a welcoming and uncluttered experience.",
+  "pages": [
+    {
+      "name": "HomePage",
+      "route": "/",
+      "filepath": "src/pages/HomePage.jsx",
+      "purpose": "Serves as the main landing page, showcasing featured books and popular categories.",
+      "usage": "Users can browse highlighted books, view categories, and navigate to book details or the search page.",
+      "designNote": "Features a hero section, a carousel of featured books, and category tiles in a grid layout."
+    }
+  ]
+}
