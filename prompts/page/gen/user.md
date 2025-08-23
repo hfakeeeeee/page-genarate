@@ -18,12 +18,22 @@ This is the complete project plan with all pages and their specifications:
 Please generate a production-ready, accessible, and performant page component for: {PAGE_NAME}
 
 For this page, focus on:
-1. Creating an intuitive user interface that matches the page's purpose described in the project plan
-2. Implementing responsive design that works well on mobile, tablet, and desktop
+1. Creating a modern, visually appealing user interface with clean layouts that matches the page's purpose
+2. Implementing responsive design that works perfectly on mobile, tablet, and desktop
 3. Using semantic HTML elements and proper ARIA attributes for accessibility
 4. Leveraging the custom CSS variables and selectors provided above
 5. Implementing necessary user interactions and state management
-6. Creating realistic mock data that demonstrates the page's functionality
+6. Creating realistic mock data with properly sourced images (use unsplash.com image URLs)
 7. Adding appropriate navigation to other pages in the project
 
-The component should be complete, well-structured, and ready to be used in a production environment.
+## IMPORTANT UI REQUIREMENTS:
+1. Use clean, modern layouts with proper spacing between elements
+2. Create visually appealing UI components (cards, buttons, navigation)
+3. For book covers, use real image URLs from Unsplash (https://source.unsplash.com/random/300x450?book)
+4. Use CSS Grid or Flexbox for responsive layouts
+5. Implement proper hover effects and transitions for interactive elements
+6. Create a cohesive color scheme using the provided CSS variables
+7. Use shadows and subtle effects for depth and visual hierarchy
+8. Ensure text has proper contrast against backgrounds
+
+The component should be complete, well-structured, visually polished, and ready to be used in a production environment.

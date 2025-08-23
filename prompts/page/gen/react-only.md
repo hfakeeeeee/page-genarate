@@ -8,6 +8,20 @@
 - Consider using React.lazy and Suspense for code-splitting when appropriate
 - Implement error boundaries around complex or potentially unstable components
 
+## React UI Component Patterns
+- Create modern, visually appealing components with proper spacing and layout
+- Use CSS Grid and Flexbox for responsive layouts
+- Implement skeleton loading states for async data
+- Create proper hover and active states for interactive elements
+- Use CSS transitions for smooth UI interactions
+- Implement proper error states with user-friendly messages
+- Design consistent card layouts for content display
+- Create responsive navigation patterns (hamburger menu for mobile)
+- Use proper typography hierarchy for readability
+- Implement lazy loading for images with fallbacks
+- Create subtle animations to enhance user experience
+- Use shadows and borders to create visual hierarchy
+
 ## React Component Architecture
 - Export a **default** page component using the following pattern:
 `export default function <PageName>Page() {...}`
@@ -21,7 +35,7 @@
 
 ## React File skeleton
 - One file exporting **default** page component:
-`export default function <Name>Page() {...}`
+`export default function <n>Page() {...}`
 - Optional small local subcomponents within the same file.
 
 ## React Styling Best Practices (when custom CSS is insufficient)
@@ -58,6 +72,24 @@
   - Use `useNavigate()` hook for programmatic navigation
   - Use `useParams()` for accessing route parameters
 
+## Book Mock Data Format
+Use this format for generating realistic book data:
+```jsx
+const books = [
+  {
+    id: "1",
+    title: "The Silent Echo",
+    author: "Eleanor H. Porter",
+    coverImage: "https://source.unsplash.com/random/300x450?book,hardcover",
+    description: "A captivating mystery novel that follows detective Sarah Reynolds as she unravels a decades-old cold case in a small coastal town.",
+    price: "$24.99",
+    rating: 4.7,
+    category: "Mystery"
+  },
+  // More books...
+];
+```
+
 ## React Performance Considerations:
 - Implement `React.memo()` for components that render often but with the same props
 - Use the `useCallback` hook for functions passed as props to child components
@@ -70,3 +102,6 @@
 2. Do NOT use BrowserRouter or Router components in page components
 3. Make sure all component exports use `export default` syntax
 4. Include all necessary imports for hooks and components you use
+5. Use Unsplash URLs for all images (https://source.unsplash.com/random/300x450?book)
+6. Implement proper loading and error states for async operations
+7. Create responsive layouts that work on all device sizes
