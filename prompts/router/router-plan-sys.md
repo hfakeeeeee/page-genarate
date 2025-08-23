@@ -6,6 +6,7 @@ Your task is to identify all source files that must be created or updated to imp
 - Follow framework-specific best practices for routing implementation
 - Ensure routing supports dynamic route parameters, nested routes, and not-found handling
 - Implement code-splitting for optimal performance
+- Your response must contain a standard code block using triple backticks (```) format
 
 ## Output Rules:
 - The Output must be a valid JSON without comments, markdown formatting or code fences

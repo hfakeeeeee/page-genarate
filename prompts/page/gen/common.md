@@ -34,8 +34,10 @@ The project was scaffolded with Vite; avoid using Node-only globals or APIs as t
     - Structure component code in a logical flow
 
 ## Output Requirements (strictly enforced)
-Return **exactly one** fenced code block containing your complete, production-ready component. No text before/after, no extra fences, no JSON wrappers.
-```code```
+Return **exactly one** fenced code block containing your complete, production-ready component. Use triple backticks (```) at the start and end. No text before/after, no extra fences, no JSON wrappers.
+```
+// Your code here
+```
 
 ## Quality Assurance Checklist (all must be satisfied)
 - Component content is derived from the `project_plan.pages` entry matching the given `page_name`

@@ -9,7 +9,8 @@ Please implement a complete routing solution for the following pages:
 Create {{FILEPATH}} with a production-ready router implementation that meets these requirements:
 
 ## Technical Requirements
-- Return exactly ONE fenced code block labeled `code` containing the complete file content
+- Return exactly ONE fenced code block containing the complete file content
+- The code block must use triple backticks (```) at the start and end
 - The code must be the full contents of {{FILEPATH}} with no omissions
 - Implement routing using the appropriate framework router:
   - React: React Router (v6+ API; compatible with v7)
