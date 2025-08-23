@@ -1,39 +1,29 @@
-## CSS Variables Reference
-These variables are available in the project's CSS system and should be used for consistent styling:
+Generate a modern, full-page React component for: **{PAGE_NAME}**
 
-{CSS_VARIABLES}
+Use the project plan: {PROJECT_PLAN}
 
-## CSS Selectors and Utility Classes
-The following selectors and utility classes are available to help maintain consistent styling:
+**REQUIREMENTS:**
+- Full viewport height (100vh) layout
+- Real images from Unsplash: `https://source.unsplash.com/random/400x600?book` 
+- Inline SVG icons (NOT image files)
+- Modern card designs with hover effects
+- Responsive grid layouts
+- CSS variables from: {CSS_VARIABLES}
+- CSS classes from: {CSS_SELECTORS}
 
-{CSS_SELECTORS}
+**MOCK DATA FORMAT:**
+```jsx
+const books = [
+  {
+    id: "1", 
+    title: "Example Title",
+    author: "Author Name", 
+    coverImage: "https://source.unsplash.com/random/300x450?book",
+    price: "$19.99",
+    rating: 4.5,
+    category: "Fiction"
+  }
+];
+```
 
-## Project Plan and Requirements
-This is the complete project plan with all pages and their specifications:
-
-{PROJECT_PLAN}
-
-## Page Generation Request
-
-Please generate a production-ready, accessible, and performant page component for: {PAGE_NAME}
-
-For this page, focus on:
-1. Creating a modern, visually appealing user interface with clean layouts that matches the page's purpose
-2. Implementing responsive design that works perfectly on mobile, tablet, and desktop
-3. Using semantic HTML elements and proper ARIA attributes for accessibility
-4. Leveraging the custom CSS variables and selectors provided above
-5. Implementing necessary user interactions and state management
-6. Creating realistic mock data with properly sourced images (use unsplash.com image URLs)
-7. Adding appropriate navigation to other pages in the project
-
-## IMPORTANT UI REQUIREMENTS:
-1. Use clean, modern layouts with proper spacing between elements
-2. Create visually appealing UI components (cards, buttons, navigation)
-3. For book covers, use real image URLs from Unsplash (https://source.unsplash.com/random/300x450?book)
-4. Use CSS Grid or Flexbox for responsive layouts
-5. Implement proper hover effects and transitions for interactive elements
-6. Create a cohesive color scheme using the provided CSS variables
-7. Use shadows and subtle effects for depth and visual hierarchy
-8. Ensure text has proper contrast against backgrounds
-
-The component should be complete, well-structured, visually polished, and ready to be used in a production environment.
+Return ONLY the complete React component code in a single code block.
