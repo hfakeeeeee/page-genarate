@@ -1,0 +1,327 @@
+[
+    {
+        "name": "*,::before,::after",
+        "type": "element",
+        "purpose": "Sets box-sizing to border-box and removes default border width and style for all elements, including pseudo-elements."
+    },
+    {
+        "name": ":focus-visible",
+        "type": "pseudo-class",
+        "purpose": "Applies a dashed outline with a customizable width and offset to elements when they are focused and visible."
+    },
+    {
+        "name": ":visited",
+        "type": "pseudo-class",
+        "purpose": "Changes the color of visited links to a specified variable color."
+    },
+    {
+        "name": "hr",
+        "type": "element",
+        "purpose": "Sets the color of horizontal rules to inherit and applies a top border width of 1px."
+    },
+    {
+        "name": "b,strong",
+        "type": "element",
+        "purpose": "Increases the font weight to bolder for bold text elements."
+    },
+    {
+        "name": "small",
+        "type": "element",
+        "purpose": "Sets the font size to 0.875em for small text elements, making them slightly smaller than the default text size."
+    },
+    {
+        "name": "sub,sup",
+        "type": "element",
+        "purpose": "Adjusts the font size to 0.75em and sets line height to 0 for subscript and superscript elements, positioning them relative to the baseline."
+    },
+    {
+        "name": "sub",
+        "type": "element",
+        "purpose": "Positions subscript elements 0.25em below the baseline for proper alignment."
+    },
+    {
+        "name": "sup",
+        "type": "element",
+        "purpose": "Positions superscript elements 0.5em above the baseline for proper alignment."
+    },
+    {
+        "name": "a",
+        "type": "element",
+        "purpose": "Styles anchor elements with a color defined by the variable --nt-color-action-link-default and sets an outline offset of 2px."
+    },
+    {
+        "name": "button",
+        "type": "element",
+        "purpose": "Styles buttons with a transparent background, inherited color, and no margin or padding, ensuring consistent appearance across browsers."
+    },
+    {
+        "name": "button:disabled",
+        "type": "element",
+        "purpose": "Disables pointer events for buttons, making them non-interactive when disabled."
+    },
+    {
+        "name": "button:not(:disabled)",
+        "type": "element",
+        "purpose": "Sets the cursor to pointer for buttons that are not disabled, indicating they are clickable."
+    },
+    {
+        "name": "img,video",
+        "type": "element",
+        "purpose": "Ensures images and videos are displayed as block elements with automatic height and a maximum width of 100% for responsive design."
+    },
+    {
+        "name": "svg:not(:root)",
+        "type": "element",
+        "purpose": "Allows SVG elements to overflow visibly, preventing clipping of content within the SVG."
+    },
+    {
+        "name": "figure",
+        "type": "element",
+        "purpose": "Removes default margin from figure elements, ensuring they align with surrounding content."
+    },
+    {
+        "name": "table",
+        "type": "element",
+        "purpose": "Sets tables to collapse borders, use current color for borders, and removes text indentation for consistent styling."
+    },
+    {
+        "name": "thead,tbody,tfoot,th,tr,td",
+        "type": "element",
+        "purpose": "Inherits border color and width for table elements to maintain consistent styling across table sections."
+    },
+    {
+        "name": "fieldset",
+        "type": "element",
+        "purpose": "Removes default padding and margin, and sets minimum width to zero for fieldset elements to ensure consistent layout."
+    },
+    {
+        "name": "input,optgroup,select,textarea",
+        "type": "element",
+        "purpose": "Ensures form elements inherit font family, use a font size of 1em, a line height of 1.15, and have no margin for uniform appearance."
+    },
+    {
+        "name": "[type='search']",
+        "type": "attribute",
+        "purpose": "Styles search input fields to appear as textfields with a specific outline offset of -2px."
+    },
+    {
+        "name": "summary",
+        "type": "element",
+        "purpose": "Displays the summary element as a list item with a pointer cursor, indicating it is interactive."
+    },
+    {
+        "name": "[hidden]",
+        "type": "attribute",
+        "purpose": "Hides elements with the hidden attribute by setting their display to none, overriding any other display settings."
+    },
+    {
+        "name": "input::-ms-reveal,input::-ms-clear",
+        "type": "element",
+        "purpose": "Hides the reveal and clear buttons in input fields on Microsoft browsers by setting their display to none."
+    },
+    {
+        "name": "input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active",
+        "type": "element",
+        "purpose": "Applies a very long transition to the background color of autofilled input fields, effectively preventing the default autofill styling."
+    },
+    {
+        "name": "h1,.nb-h1",
+        "type": "element",
+        "purpose": "Styles the main heading with a specific color, font size, weight, and line height using CSS variables. It has a margin bottom of 0.5em and no margin top."
+    },
+    {
+        "name": "h2,.nb-h2",
+        "type": "element",
+        "purpose": "Styles the second-level heading with a specific color, font size, weight, and line height using CSS variables. It has a margin bottom of 0.5em and no margin top."
+    },
+    {
+        "name": "h3,.nb-h3",
+        "type": "element",
+        "purpose": "Styles the third-level heading with a specific color, font size, weight, and line height using CSS variables. It has a margin bottom of 0.5em and no margin top."
+    },
+    {
+        "name": "h4,.nb-h4",
+        "type": "element",
+        "purpose": "Styles the fourth-level heading with a specific color, font size, weight, and line height using CSS variables. It has a margin bottom of 0.5em and no margin top."
+    },
+    {
+        "name": "h5,.nb-h5",
+        "type": "element",
+        "purpose": "Styles the fifth-level heading with a specific color, font size, weight, and line height using CSS variables. It has a margin bottom of 0.5em and no margin top."
+    },
+    {
+        "name": "h6,.nb-h6",
+        "type": "element",
+        "purpose": "Styles h6 elements with a specific color, font size, weight, and line height, and sets margins for spacing."
+    },
+    {
+        "name": "p,.nb-paragraph",
+        "type": "element",
+        "purpose": "Styles paragraph elements with a defined font size, line height, and margins for spacing."
+    },
+    {
+        "name": "p:last-child,.nb-paragraph:last-child",
+        "type": "element",
+        "purpose": "Removes the bottom margin for the last paragraph element to avoid extra spacing."
+    },
+    {
+        "name": "p > a,.nb-paragraph > a",
+        "type": "element",
+        "purpose": "Styles links within paragraphs with a solid bottom border, bold font weight, and no text decoration."
+    },
+    {
+        "name": "p > a:hover,p > a:active,p > a:focus,.nb-paragraph > a:hover,.nb-paragraph > a:active,.nb-paragraph > a:focus",
+        "type": "element",
+        "purpose": "Changes the bottom border style to dashed when links within paragraphs are hovered, active, or focused."
+    },
+    {
+        "name": ".nb-btn",
+        "type": "class",
+        "purpose": "Styles a button with a primary color, bold font, and rounded borders. It includes transitions for color, background-color, and border-color."
+    },
+    {
+        "name": ".nb-btn:disabled",
+        "type": "class",
+        "purpose": "Modifies the button's idle color to a disabled state color (#c8c8c8) when the button is disabled."
+    },
+    {
+        "name": ".nb-btn:focus",
+        "type": "class",
+        "purpose": "Sets the outline color to the active button color when the button is focused, with an outline offset of 2px."
+    },
+    {
+        "name": ".nb-btn:focus-visible",
+        "type": "class",
+        "purpose": "Adds an underline to the button text when it is focused and visible."
+    },
+    {
+        "name": ".nb-btn:not(:disabled):hover",
+        "type": "class",
+        "purpose": "Changes the cursor to a pointer when hovering over a button that is not disabled."
+    },
+    {
+        "name": ".nb-btn > nucleus-icon",
+        "type": "class",
+        "purpose": "Applies a transformation to scale the icon to 1.4 times its size and translate it vertically by 10%."
+    },
+    {
+        "name": ".nb-btn > nucleus-icon.is-before",
+        "type": "class",
+        "purpose": "Adds a right margin of 0.5em to the icon when it appears before other elements."
+    },
+    {
+        "name": ".nb-btn > nucleus-icon.is-after",
+        "type": "class",
+        "purpose": "Adds a left margin of 0.5em and sets the width to 1.25rem and height to 0.9375rem for the icon when it appears after other elements."
+    },
+    {
+        "name": ".nb-btn.is-small",
+        "type": "class",
+        "purpose": "Styles a small button with specific padding values of 0.375em top, 0.825em sides, and 0.425em bottom."
+    },
+    {
+        "name": ".nb-btn--primary",
+        "type": "class",
+        "purpose": "Styles a primary button with white text color and a background color defined by the variable --nb-button-idle."
+    },
+    {
+        "name": ".nb-btn--primary:active,.nb-btn--primary:focus,.nb-btn--primary:not(:disabled):hover",
+        "type": "class",
+        "purpose": "Applies the active background color to primary buttons when they are focused, active, or hovered, unless disabled."
+    },
+    {
+        "name": ".nb-btn--secondary",
+        "type": "class",
+        "purpose": "Styles secondary buttons with idle color text, white background, and border matching the text color."
+    },
+    {
+        "name": ".nb-btn--secondary:active,.nb-btn--secondary:focus,.nb-btn--secondary:not(:disabled):hover",
+        "type": "class",
+        "purpose": "Changes secondary buttons to have white text and active color background and border when focused, active, or hovered, unless disabled."
+    },
+    {
+        "name": ".nb-btn--reversed",
+        "type": "class",
+        "purpose": "Styles reversed buttons with action-reversed color text, transparent background, and border matching the text color."
+    },
+    {
+        "name": ".nb-btn--reversed:focus",
+        "type": "class",
+        "purpose": "Applies the current color as the outline color for reversed buttons when focused."
+    },
+    {
+        "name": ".nb-btn--reversed:disabled",
+        "type": "class",
+        "purpose": "Styles a reversed button when disabled, setting its color to a disabled state using a variable or defaulting to #c8c8c8."
+    },
+    {
+        "name": ".nb-btn--reversed:active,.nb-btn--reversed:focus,.nb-btn--reversed:not(:disabled):hover",
+        "type": "class",
+        "purpose": "Applies a grayscale overlay background color to a reversed button when active, focused, or hovered (if not disabled)."
+    },
+    {
+        "name": ".nb-btn--primary-reversed",
+        "type": "class",
+        "purpose": "Styles a primary reversed button with a specific font color, white background, and border color matching the current font color."
+    },
+    {
+        "name": ".nb-btn--primary-reversed:focus",
+        "type": "class",
+        "purpose": "Sets the outline color of a primary reversed button to match the current font color when focused."
+    },
+    {
+        "name": ".nb-btn--primary-reversed:disabled",
+        "type": "class",
+        "purpose": "Styles a primary reversed button when disabled, setting its color to a disabled state using a variable or defaulting to #c8c8c8."
+    },
+    {
+        "name": ".nb-btn--primary-reversed:active,.nb-btn--primary-reversed:focus,.nb-btn--primary-reversed:not(:disabled):hover",
+        "type": "class",
+        "purpose": "Applies a semi-transparent white background color when the primary reversed button is active, focused, or hovered."
+    },
+    {
+        "name": ".nb-btn--secondary-reversed",
+        "type": "class",
+        "purpose": "Styles the secondary reversed button with a transparent background, current color border, and a color defined by a CSS variable."
+    },
+    {
+        "name": ".nb-btn--secondary-reversed:focus",
+        "type": "class",
+        "purpose": "Sets the outline color to the current color when the secondary reversed button is focused."
+    },
+    {
+        "name": ".nb-btn--secondary-reversed:disabled",
+        "type": "class",
+        "purpose": "Changes the text color to a disabled state color when the secondary reversed button is disabled."
+    },
+    {
+        "name": ".nb-btn--secondary-reversed:active,.nb-btn--secondary-reversed:focus,.nb-btn--secondary-reversed:not(:disabled):hover",
+        "type": "class",
+        "purpose": "Applies a semi-transparent white background and changes the text color to a primary font color when the secondary reversed button is active, focused, or hovered."
+    },
+    {
+        "name": ".nb-btn.is-emphasized",
+        "type": "class",
+        "purpose": "Styles a button with emphasized colors, using a default idle color (#612166) and an active color (#4c1a51)."
+    },
+    {
+        "name": ".nb-container",
+        "type": "class",
+        "purpose": "Centers the container with automatic left and right margins, sets a maximum width of 1500px, and adds padding of 2rem on both sides."
+    },
+    {
+        "name": ".nb-list",
+        "type": "class",
+        "purpose": "Applies padding of 2rem to the left, sets the font size to 1rem, and adjusts the line height to 1.5 for list elements."
+    },
+    {
+        "name": ".nb-list-item",
+        "type": "class",
+        "purpose": "Adds a padding of 0.5rem to the left of each list item."
+    },
+    {
+        "name": ".nb-breakout-link::before",
+        "type": "class",
+        "purpose": "Creates a block element before the link, covering the entire area with absolute positioning from top to bottom and left to right."
+    }
+]
