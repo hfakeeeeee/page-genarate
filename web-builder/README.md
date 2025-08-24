@@ -15,7 +15,7 @@ An intelligent web application generator that creates modern React/Vue applicati
 
 ### Prerequisites
 - Python 3.8+
-- OpenAI API key
+- Azure OpenAI API key (primary) or OpenAI API key (fallback)
 
 ### Installation
 
@@ -27,7 +27,7 @@ An intelligent web application generator that creates modern React/Vue applicati
 2. **Configure environment:**
    ```bash
    cp .env.example .env
-   # Edit .env with your OpenAI API key
+   # Edit .env with your Azure OpenAI API key (or OpenAI API key as fallback)
    ```
 
 3. **Start the application:**
@@ -91,8 +91,17 @@ if status.json()["status"] == "completed":
 Set these environment variables in `.env`:
 
 ```env
+# Azure OpenAI Configuration (Primary)
+AZURE_ENDPOINT=https://dhp-search-east-npe-0.openai.azure.com/
+AZURE_MODEL=gpt-4.1
+AZURE_API_VERSION=2024-02-01
+AZURE_OPENAI_API_KEY=your_azure_openai_api_key_here
+
+# Fallback OpenAI Configuration
 OPENAI_API_KEY=your_openai_api_key_here
 MODEL=gpt-4o
+
+# Application Settings
 OUTPUT_PATH=./output
 BASE_PROJECTS_PATH=./base_projects
 PROMPTS_PATH=./prompts

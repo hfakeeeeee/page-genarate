@@ -5,14 +5,19 @@ import logging
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Callable
-from openai import OpenAI
+from openai import AzureOpenAI
 
 from ..config import settings
 from ..models import ProjectPlan, PageInfo
 
 class PageGeneratorService:
     def __init__(self):
-        self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
+        # Azure OpenAI configuration (following notebook logic)
+        self.client = AzureOpenAI(
+            api_version=settings.AZURE_API_VERSION,
+            azure_endpoint=settings.AZURE_ENDPOINT,
+            api_key=settings.AZURE_OPENAI_API_KEY
+        )
         self.logger = logging.getLogger(__name__)
         
         # Setup logging
@@ -102,11 +107,42 @@ class PageGeneratorService:
                 # Generate page
                 page_code = await self._call_llm(user_prompt, sys_prompt, temperature=0.3)
                 
+                # Save the raw response for debugging (following notebook logic)
+                debug_response_path = os.path.join(settings.OUTPUT_PATH, f"debug_page_response_{page.name}.md")
+                os.makedirs(os.path.dirname(debug_response_path), exist_ok=True)
+                with open(debug_response_path, "w", encoding="utf-8") as f:
+                    f.write(page_code)
+                self.logger.info(f"Raw page response for {page.name} saved to {debug_response_path}")
+                
                 # Extract and clean code
                 clean_code = self._extract_code_from_response(page_code, page.filepath)
                 
                 generated_pages[page.filepath] = clean_code
                 page.generated = True
+                
+                # Quality checks for modern UI requirements (following notebook logic)
+                quality_issues = []
+                
+                # Check for React import
+                if 'import React' not in clean_code:
+                    quality_issues.append("Missing React import")
+                    
+                # Check for full page layout
+                if 'min-height: 100vh' not in clean_code and 'height: 100vh' not in clean_code:
+                    quality_issues.append("Missing full-page layout")
+                    
+                # Check for Unsplash images
+                if 'source.unsplash.com' not in clean_code and ('coverImage' in clean_code or 'img' in clean_code):
+                    quality_issues.append("Missing real image URLs")
+                    
+                # Check for responsive design
+                if '@media' not in clean_code:
+                    quality_issues.append("Missing responsive breakpoints")
+                    
+                if quality_issues:
+                    self.logger.warning(f"⚠️ Quality issues in {page.name}: {', '.join(quality_issues)}")
+                else:
+                    self.logger.info(f"✅ Quality check passed for {page.name}")
                 
                 self.logger.info(f"✅ Generated {page.name}")
                 
@@ -180,12 +216,20 @@ IMPORTANT: DO NOT include BrowserRouter in App component!
             # Generate router
             router_code = await self._call_llm(user_prompt, router_sys, temperature=0.2)
             
+            # Save the raw response for debugging (following notebook logic)
+            debug_response_path = os.path.join(settings.OUTPUT_PATH, "debug_router_response.md")
+            os.makedirs(os.path.dirname(debug_response_path), exist_ok=True)
+            with open(debug_response_path, "w", encoding="utf-8") as f:
+                f.write(router_code)
+            self.logger.info(f"Raw router response saved to {debug_response_path}")
+            
             # Extract and clean code
             clean_code = self._extract_code_from_response(router_code, router_filepath)
             
-            # Remove BrowserRouter if present
+            # Remove BrowserRouter if present (following notebook logic)
             if "BrowserRouter" in clean_code:
                 clean_code = clean_code.replace("<BrowserRouter>", "").replace("</BrowserRouter>", "")
+                self.logger.info("✅ Removed BrowserRouter from App component to prevent nested router errors")
             
             return clean_code
             
@@ -199,22 +243,30 @@ IMPORTANT: DO NOT include BrowserRouter in App component!
         system_instruction: str,
         temperature: float = 0.0
     ) -> str:
-        """Call OpenAI API"""
+        """Call Azure OpenAI API (following notebook logic)"""
         try:
+            start_time = datetime.now()
+            self.logger.info(f"Calling Azure OpenAI with {len(system_instruction)} chars system prompt and {len(user_instruction)} chars user prompt")
+            
+            conversation = [
+                {"role": "system", "content": system_instruction},
+                {"role": "user", "content": user_instruction}
+            ]
+
             response = self.client.chat.completions.create(
-                model=settings.MODEL,
-                messages=[
-                    {"role": "system", "content": system_instruction},
-                    {"role": "user", "content": user_instruction}
-                ],
-                temperature=temperature,
-                timeout=600
+                model=settings.AZURE_MODEL,
+                messages=conversation,
+                timeout=600,
+                temperature=temperature
             )
+            
+            elapsed_time = (datetime.now() - start_time).total_seconds()
+            self.logger.info(f"Azure OpenAI call completed in {elapsed_time:.2f} seconds")
             
             return response.choices[0].message.content
             
         except Exception as e:
-            self.logger.error(f"OpenAI API call failed: {str(e)}")
+            self.logger.error(f"Azure OpenAI API call failed: {str(e)}")
             raise
     
     def _load_prompt_template(self, relative_path: str) -> str:
@@ -228,30 +280,90 @@ IMPORTANT: DO NOT include BrowserRouter in App component!
             return ""
     
     def _extract_code_from_response(self, response: str, filepath: str) -> str:
-        """Extract code from LLM response"""
-        # Try multiple patterns
-        patterns = [
-            r"```(?:\w+)?\n(.*?)```",  # Standard code blocks
-            r"```\n(.*?)```",         # Simple code blocks
-            r"```.*?\n(.*?)```"       # Any code block
-        ]
-        
-        for pattern in patterns:
-            match = re.search(pattern, response, re.DOTALL)
-            if match:
-                code = match.group(1).strip()
+        """
+        Extract code from markdown code block and clean it.
+        Enhanced to handle multiple code block formats following notebook logic.
+        """
+        try:
+            # Try multiple patterns for code extraction in order of preference
+            
+            # Pattern 1: Standard markdown code blocks with language identifier (```jsx, ```python, etc.)
+            pattern1 = r"```(?:\w+)?\n(.*?)```"
+            match1 = re.search(pattern1, response, re.DOTALL)
+            
+            # Pattern 2: Code blocks with no language identifier (just ```)
+            pattern2 = r"```\n(.*?)```"
+            match2 = re.search(pattern2, response, re.DOTALL)
+            
+            # Pattern 3: Any code block with or without language identifier
+            pattern3 = r"```.*?\n(.*?)```"
+            match3 = re.search(pattern3, response, re.DOTALL)
+            
+            # Pattern 4: Import statements as fallback (for identifying code without proper formatting)
+            pattern4 = r"(?:^|\n)(import [^\n]+.*?(?:function|class|const|let|var).*?(?:export default|\}))"
+            match4 = re.search(pattern4, response, re.DOTALL)
+            
+            # Try each pattern in sequence
+            if match1:
+                code = match1.group(1).strip()
+                self.logger.info(f"Code extracted using pattern 1 (standard markdown code block)")
+            elif match2:
+                code = match2.group(1).strip()
+                self.logger.info(f"Code extracted using pattern 2 (simple code block)")
+            elif match3:
+                code = match3.group(1).strip()
+                self.logger.info(f"Code extracted using pattern 3 (any code block)")
+            elif match4:
+                code = match4.group(1).strip()
+                self.logger.info(f"Code extracted using pattern 4 (import statements fallback)")
+            else:
+                self.logger.warning("No code block found, trying last resort extraction")
                 
-                # Add React import if needed
-                if filepath.endswith(('.jsx', '.tsx')) and 'import React' not in code and ('<' in code and '/>' in code):
-                    code = 'import React from "react";\n\n' + code
+                # Last resort - try to extract any text that looks like code
+                # Look for imports or typical code patterns
+                potential_code_lines = []
+                lines = response.split('\n')
+                in_code_section = False
                 
-                return code
-        
-        # Fallback: return the response as-is
-        return response
+                for line in lines:
+                    # Detect start of what might be code
+                    if ('import ' in line or 'function ' in line or 'class ' in line or 
+                        'const ' in line or 'let ' in line or 'var ' in line or 
+                        line.strip().startswith('//') or line.strip().startswith('/*')):
+                        in_code_section = True
+                    
+                    if in_code_section:
+                        potential_code_lines.append(line)
+                
+                if potential_code_lines:
+                    code = '\n'.join(potential_code_lines)
+                    self.logger.warning(f"Used last resort code extraction - extracted {len(potential_code_lines)} lines that look like code")
+                else:
+                    raise ValueError("No code block found in the LLM response")
+            
+            # Perform framework-specific checks and fixes
+            
+            # For React files, ensure React is imported if JSX is used
+            if filepath.endswith(('.jsx', '.tsx')) and 'import React' not in code and ('<' in code and '/>' in code):
+                code = 'import React from "react";\n\n' + code
+                self.logger.info(f"Added React import to {filepath} as JSX was detected")
+            
+            # For React router files, remove BrowserRouter if present
+            if 'App.jsx' in filepath or 'App.tsx' in filepath:
+                if '<BrowserRouter>' in code or '<Router>' in code:
+                    code = code.replace('<BrowserRouter>', '').replace('</BrowserRouter>', '')
+                    code = code.replace('<Router>', '').replace('</Router>', '')
+                    self.logger.info(f"Removed BrowserRouter/Router from {filepath} to prevent nesting issues")
+            
+            return code
+            
+        except Exception as e:
+            self.logger.error(f"Error extracting code from response: {str(e)}")
+            # Return the response as-is as fallback
+            return response
     
     def _get_ui_examples(self) -> str:
-        """Get UI component examples"""
+        """Get UI component examples (enhanced from notebook)"""
         return """
 
 EXAMPLE COMPONENTS TO IMPLEMENT:
@@ -260,17 +372,17 @@ Hero Section:
 ```jsx
 <section className="hero-section">
   <div className="hero-content">
-    <h2>Discover Amazing Content</h2>
-    <p>Find what you're looking for in our collection</p>
+    <h2>Discover Amazing Books</h2>
+    <p>Find your next favorite read from our curated collection</p>
   </div>
-  <img src="https://source.unsplash.com/random/600x400?website" className="hero-image" alt="Hero" />
+  <img src="https://source.unsplash.com/random/600x400?library,books" className="hero-image" alt="Books" />
 </section>
 ```
 
 Search Bar:
 ```jsx
 <div className="search-container">
-  <input type="text" placeholder="Search..." className="search-input" />
+  <input type="text" placeholder="Search books..." className="search-input" />
   <button className="btn-primary">
     <svg className="icon-svg" viewBox="0 0 24 24">
       <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -280,14 +392,20 @@ Search Bar:
 </div>
 ```
 
-Card Component:
+Book Card:
 ```jsx
 <div className="card">
-  <img src="https://source.unsplash.com/random/300x200?content" className="card-image" alt="Content" />
+  <img src="https://source.unsplash.com/random/300x450?book,novel" className="card-image" alt="Book cover" />
   <div className="card-content">
-    <h3 className="card-title">Title</h3>
-    <p className="card-description">Description</p>
-    <Link to="/details/1" className="btn-primary">View Details</Link>
+    <h3 className="card-title">Book Title</h3>
+    <p className="card-description">Author Name</p>
+    <div className="rating">
+      <svg className="icon-svg" viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      4.5
+    </div>
+    <Link to="/book/1" className="btn-primary">View Details</Link>
   </div>
 </div>
 ```
