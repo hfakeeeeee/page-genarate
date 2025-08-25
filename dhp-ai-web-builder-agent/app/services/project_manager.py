@@ -239,7 +239,7 @@ class ProjectManagerService:
             name=project_result.project_name,
             framework=project_result.framework,
             language=project_result.language,
-            pages_count=len([f for f in project_result.files.keys() if 'page' in f.lower() or 'component' in f.lower()]),
+            pages_count=len([f for f in project_result.files.keys() if f.endswith(('.js', '.jsx', '.ts', '.tsx', '.vue'))]),
             created_at=datetime.now(),
             download_url=f"/simple-generator/download/{generation_id}",
             size_mb=size_mb
