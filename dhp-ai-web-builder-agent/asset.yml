@@ -1,0 +1,14 @@
+repoMetaData:
+  version: 1
+  platform: ado
+  organization: humana
+  project: Digital Health and Analytics
+  repositoryType: git
+  repository: dhp-ai-web-builder-agent
+  sonarqubeProjectKey: 
+  serviceNowAssociatedRecords:
+    - type: AppService
+      id: 
+      description: DHP AI Web Builder Agent
+      technology: Other
+      

@@ -1,0 +1,28 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+class Settings:
+    # Azure OpenAI Configuration (following notebook logic)
+    AZURE_ENDPOINT: str = os.getenv("AZURE_ENDPOINT")
+    AZURE_MODEL: str = os.getenv("AZURE_MODEL")
+    AZURE_API_VERSION: str = os.getenv("AZURE_API_VERSION")
+    AZURE_OPENAI_API_KEY: str = os.getenv("AZURE_OPENAI_API_KEY")
+
+    # Paths
+    OUTPUT_PATH: str = os.getenv("OUTPUT_PATH")
+    BASE_PROJECTS_PATH: str = os.getenv("BASE_PROJECTS_PATH")
+    PROMPTS_PATH: str = os.getenv("PROMPTS_PATH")
+
+    def __init__(self):
+        # Ensure output directory exists
+        os.makedirs(self.OUTPUT_PATH, exist_ok=True)
+
+        # Validate Azure OpenAI API key (primary)
+        if not self.AZURE_OPENAI_API_KEY:
+            print("AZURE_OPENAI_API_KEY not set")
+
+
+settings = Settings()

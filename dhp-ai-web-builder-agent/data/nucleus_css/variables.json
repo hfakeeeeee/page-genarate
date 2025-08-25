@@ -1,0 +1,1037 @@
+[
+    {
+        "name": "--nt-color-accent-primary-1",
+        "type": "variable",
+        "purpose": "Defines the primary accent color for the application. Value: #78be20"
+    },
+    {
+        "name": "--nt-color-accent-primary-2",
+        "type": "variable",
+        "purpose": "Defines a secondary accent color for the application. Value: #5c9a1b"
+    },
+    {
+        "name": "--nt-color-accent-secondary-1",
+        "type": "variable",
+        "purpose": "Defines the first secondary accent color for the application. Value: #114A21"
+    },
+    {
+        "name": "--nt-color-accent-secondary-2",
+        "type": "variable",
+        "purpose": "Defines the second secondary accent color for the application. Value: #af0061"
+    },
+    {
+        "name": "--nt-color-accent-secondary-3",
+        "type": "variable",
+        "purpose": "Defines the third secondary accent color for the application. Value: #003057"
+    },
+    {
+        "name": "--nt-color-accent-tertiary-1",
+        "type": "variable",
+        "purpose": "Defines the first tertiary accent color for the application. Value: #66bbc4"
+    },
+    {
+        "name": "--nt-color-accent-tertiary-2",
+        "type": "variable",
+        "purpose": "Defines the second tertiary accent color for the application. Value: #fb5373"
+    },
+    {
+        "name": "--nt-color-accent-tertiary-3",
+        "type": "variable",
+        "purpose": "Defines the third tertiary accent color for the application. Value: #ffc600"
+    },
+    {
+        "name": "--nt-color-action-primary-default",
+        "type": "variable",
+        "purpose": "Defines the default primary action color for buttons and interactive elements. Value: #5c9a1b"
+    },
+    {
+        "name": "--nt-color-action-primary-active",
+        "type": "variable",
+        "purpose": "Defines the active state color for primary action buttons. Value: #487815"
+    },
+    {
+        "name": "--nt-color-action-emphasized-default",
+        "type": "variable",
+        "purpose": "Defines the default emphasized action color. Value: #612166"
+    },
+    {
+        "name": "--nt-color-action-emphasized-active",
+        "type": "variable",
+        "purpose": "Defines the active state color for emphasized action elements. Value: #4c1a51"
+    },
+    {
+        "name": "--nt-color-action-link-default",
+        "type": "variable",
+        "purpose": "Defines the default color for action links. Value: #007481"
+    },
+    {
+        "name": "--nt-color-action-link-active",
+        "type": "variable",
+        "purpose": "Defines the active state color for action links. Value: #005b68"
+    },
+    {
+        "name": "--nt-color-action-link-visited",
+        "type": "variable",
+        "purpose": "Defines the visited state color for action links. Value: #00444d"
+    },
+    {
+        "name": "--nt-color-action-reversed",
+        "type": "variable",
+        "purpose": "Defines the color for reversed action elements, typically on dark backgrounds. Value: #ffffff"
+    },
+    {
+        "name": "--nt-color-action-disabled",
+        "type": "variable",
+        "purpose": "Defines the color for disabled action elements. Value: #c8c8c8"
+    },
+    {
+        "name": "--nt-color-background-base",
+        "type": "variable",
+        "purpose": "Defines the base background color for the application. Value: #ffffff"
+    },
+    {
+        "name": "--nt-color-background-gray-050",
+        "type": "variable",
+        "purpose": "Defines a light gray background color for sections or components. Value: #f8f8f8"
+    },
+    {
+        "name": "--nt-color-background-gray-100",
+        "type": "variable",
+        "purpose": "Defines a light gray background color for sections or components. Value: #efeff1"
+    },
+    {
+        "name": "--nt-color-background-decorative",
+        "type": "variable",
+        "purpose": "Defines the decorative background color for certain components. Value: #114a21"
+    },
+    {
+        "name": "--nt-color-background-decorative-light",
+        "type": "variable",
+        "purpose": "Defines a light decorative background color for components. Value: #eff5e6"
+    },
+    {
+        "name": "--nt-color-background-accent",
+        "type": "variable",
+        "purpose": "Defines the accent background color for certain components. Value: #003057"
+    },
+    {
+        "name": "--nt-color-background-accent-light",
+        "type": "variable",
+        "purpose": "Defines a light accent background color for components. Value: #e7f1f6"
+    },
+    {
+        "name": "--nt-color-careplus-red",
+        "type": "variable",
+        "purpose": "Defines the CarePlus red color for branding and alerts. Value: #C3202F"
+    },
+    {
+        "name": "--nt-color-careplus-blue",
+        "type": "variable",
+        "purpose": "Defines the CarePlus blue color for branding. Value: #0062A6"
+    },
+    {
+        "name": "--nt-color-careplus-sky-blue",
+        "type": "variable",
+        "purpose": "Defines the CarePlus sky blue color for branding. Value: #00ACD7"
+    },
+    {
+        "name": "--nt-color-careplus-gold",
+        "type": "variable",
+        "purpose": "Defines the CarePlus gold color for branding. Value: #FDB913"
+    },
+    {
+        "name": "--nt-color-careplus-teal",
+        "type": "variable",
+        "purpose": "Defines the CarePlus teal color for branding. Value: #2EAFA4"
+    },
+    {
+        "name": "--nt-color-careplus-purple",
+        "type": "variable",
+        "purpose": "Defines the CarePlus purple color for branding. Value: #904199"
+    },
+    {
+        "name": "--nt-color-centerwell-dark-blue",
+        "type": "variable",
+        "purpose": "Defines the CenterWell dark blue color for branding. Value: #003da5"
+    },
+    {
+        "name": "--nt-color-centerwell-white",
+        "type": "variable",
+        "purpose": "Defines the CenterWell white color for backgrounds. Value: #ffffff"
+    },
+    {
+        "name": "--nt-color-centerwell-light-blue",
+        "type": "variable",
+        "purpose": "Defines the CenterWell light blue color for branding. Value: #00a3d7"
+    },
+    {
+        "name": "--nt-color-centerwell-contrast-light-blue",
+        "type": "variable",
+        "purpose": "Defines the contrast light blue color for CenterWell branding. Value: #0094c4"
+    },
+    {
+        "name": "--nt-color-centerwell-green",
+        "type": "variable",
+        "purpose": "Defines the CenterWell green color for branding. Value: #78be20"
+    },
+    {
+        "name": "--nt-color-centerwell-contrast-green",
+        "type": "variable",
+        "purpose": "Defines the contrast green color for CenterWell branding. Value: #5c9a1b"
+    },
+    {
+        "name": "--nt-color-centerwell-light-gray",
+        "type": "variable",
+        "purpose": "Defines a light gray color for CenterWell components. Value: #e6e7e8"
+    },
+    {
+        "name": "--nt-color-centerwell-dark-gray",
+        "type": "variable",
+        "purpose": "Defines a dark gray color for CenterWell components. Value: #3a3b3d"
+    },
+    {
+        "name": "--nt-color-centerwell-navy",
+        "type": "variable",
+        "purpose": "Defines the CenterWell navy color for branding. Value: #003057"
+    },
+    {
+        "name": "--nt-color-centerwell-plum",
+        "type": "variable",
+        "purpose": "Defines the CenterWell plum color for branding. Value: #af0061"
+    },
+    {
+        "name": "--nt-color-centerwell-blue-10",
+        "type": "variable",
+        "purpose": "Defines a very light blue color for CenterWell components. Value: #e8f0f8"
+    },
+    {
+        "name": "--nt-color-data-visualization-1",
+        "type": "variable",
+        "purpose": "Defines the first color for data visualization elements. Value: #114A21"
+    },
+    {
+        "name": "--nt-color-data-visualization-2",
+        "type": "variable",
+        "purpose": "Defines the second color for data visualization elements. Value: #5c9a1b"
+    },
+    {
+        "name": "--nt-color-data-visualization-3",
+        "type": "variable",
+        "purpose": "Defines the third color for data visualization elements. Value: #adcc8d"
+    },
+    {
+        "name": "--nt-color-data-visualization-4",
+        "type": "variable",
+        "purpose": "Defines the fourth color for data visualization elements. Value: #af0061"
+    },
+    {
+        "name": "--nt-color-data-visualization-5",
+        "type": "variable",
+        "purpose": "Defines the fifth color for data visualization elements. Value: #fb5373"
+    },
+    {
+        "name": "--nt-color-data-visualization-6",
+        "type": "variable",
+        "purpose": "Defines the sixth color for data visualization elements. Value: #fbacbc"
+    },
+    {
+        "name": "--nt-color-data-visualization-7",
+        "type": "variable",
+        "purpose": "Defines the seventh color for data visualization elements. Value: #007481"
+    },
+    {
+        "name": "--nt-color-data-visualization-8",
+        "type": "variable",
+        "purpose": "Defines the eighth color for data visualization elements. Value: #66bbc4"
+    },
+    {
+        "name": "--nt-color-data-visualization-9",
+        "type": "variable",
+        "purpose": "Defines the ninth color for data visualization elements. Value: #b6dde1"
+    },
+    {
+        "name": "--nt-color-data-visualization-10",
+        "type": "variable",
+        "purpose": "Defines the tenth color for data visualization elements. Value: #003057"
+    },
+    {
+        "name": "--nt-color-data-visualization-11",
+        "type": "variable",
+        "purpose": "Defines the eleventh color for data visualization elements. Value: #8098ab"
+    },
+    {
+        "name": "--nt-color-data-visualization-12",
+        "type": "variable",
+        "purpose": "Defines the twelfth color for data visualization elements. Value: #612166"
+    },
+    {
+        "name": "--nt-color-data-visualization-13",
+        "type": "variable",
+        "purpose": "Defines the thirteenth color for data visualization elements. Value: #b090b3"
+    },
+    {
+        "name": "--nt-color-data-visualization-14",
+        "type": "variable",
+        "purpose": "Defines the fourteenth color for data visualization elements. Value: #c8c8c8"
+    },
+    {
+        "name": "--nt-color-font-primary",
+        "type": "variable",
+        "purpose": "Defines the primary font color for text elements. Value: #3a3b3d"
+    },
+    {
+        "name": "--nt-color-font-secondary",
+        "type": "variable",
+        "purpose": "Defines the secondary font color for text elements. Value: #53575a"
+    },
+    {
+        "name": "--nt-color-font-reversed",
+        "type": "variable",
+        "purpose": "Defines the reversed font color for dark backgrounds. Value: #ffffff"
+    },
+    {
+        "name": "--nt-color-font-heading-large",
+        "type": "variable",
+        "purpose": "Defines the font color for large headings. Value: #5c9a1b"
+    },
+    {
+        "name": "--nt-color-font-heading",
+        "type": "variable",
+        "purpose": "Defines the font color for headings. Value: #114A21"
+    },
+    {
+        "name": "--nt-color-grayscale-100",
+        "type": "variable",
+        "purpose": "Defines a light gray color for grayscale elements. Value: #efeff1"
+    },
+    {
+        "name": "--nt-color-grayscale-200",
+        "type": "variable",
+        "purpose": "Defines a medium light gray color for grayscale elements. Value: #c8c8c8"
+    },
+    {
+        "name": "--nt-color-grayscale-400",
+        "type": "variable",
+        "purpose": "Defines a medium gray color for grayscale elements. Value: #909696"
+    },
+    {
+        "name": "--nt-color-grayscale-500",
+        "type": "variable",
+        "purpose": "Defines a darker gray color for grayscale elements. Value: #707373"
+    },
+    {
+        "name": "--nt-color-grayscale-700",
+        "type": "variable",
+        "purpose": "Defines a dark gray color for grayscale elements. Value: #53575a"
+    },
+    {
+        "name": "--nt-color-grayscale-800",
+        "type": "variable",
+        "purpose": "Defines a very dark gray color for grayscale elements. Value: #3a3b3d"
+    },
+    {
+        "name": "--nt-color-grayscale-900",
+        "type": "variable",
+        "purpose": "Defines the darkest gray color for grayscale elements. Value: #15191b"
+    },
+    {
+        "name": "--nt-color-grayscale-base",
+        "type": "variable",
+        "purpose": "Defines the base color for grayscale backgrounds. Value: #ffffff"
+    },
+    {
+        "name": "--nt-color-grayscale-050",
+        "type": "variable",
+        "purpose": "Defines a very light gray color for grayscale elements. Value: #f8f8f8"
+    },
+    {
+        "name": "--nt-color-grayscale-overlay",
+        "type": "variable",
+        "purpose": "Defines an overlay color with transparency for grayscale elements. Value: rgba(21, 25, 27, 0.6)"
+    },
+    {
+        "name": "--nt-color-grayscale-gradient",
+        "type": "variable",
+        "purpose": "Defines a gradient from white to light gray. Value: linear-gradient(#FFFFFF, #F8F8F8)"
+    },
+    {
+        "name": "--nt-color-humana-green",
+        "type": "variable",
+        "purpose": "Defines the Humana green color for branding. Value: #78be20"
+    },
+    {
+        "name": "--nt-color-humana-green-contrast",
+        "type": "variable",
+        "purpose": "Defines the contrast green color for Humana branding. Value: #5C9A1B"
+    },
+    {
+        "name": "--nt-color-humana-green-dark",
+        "type": "variable",
+        "purpose": "Defines the dark green color for Humana branding. Value: #114a21"
+    },
+    {
+        "name": "--nt-color-humana-white",
+        "type": "variable",
+        "purpose": "Defines the Humana white color for backgrounds. Value: #ffffff"
+    },
+    {
+        "name": "--nt-color-humana-navy",
+        "type": "variable",
+        "purpose": "Defines the Humana navy color for branding. Value: #003057"
+    },
+    {
+        "name": "--nt-color-humana-plum",
+        "type": "variable",
+        "purpose": "Defines the Humana plum color for branding. Value: #af0061"
+    },
+    {
+        "name": "--nt-color-humana-eggplant",
+        "type": "variable",
+        "purpose": "Defines the Humana eggplant color for branding. Value: #612166"
+    },
+    {
+        "name": "--nt-color-humana-teal",
+        "type": "variable",
+        "purpose": "Defines the Humana teal color for branding. Value: #007481"
+    },
+    {
+        "name": "--nt-color-humana-teal-light",
+        "type": "variable",
+        "purpose": "Defines the light teal color for Humana branding. Value: #66bbc4"
+    },
+    {
+        "name": "--nt-color-humana-gray",
+        "type": "variable",
+        "purpose": "Defines the Humana gray color for branding. Value: #3a3b3d"
+    },
+    {
+        "name": "--nt-color-humana-gray-light",
+        "type": "variable",
+        "purpose": "Defines the light gray color for Humana branding. Value: #c8c8c8"
+    },
+    {
+        "name": "--nt-color-humana-watermelon",
+        "type": "variable",
+        "purpose": "Defines the Humana watermelon color for branding. Value: #fb5373"
+    },
+    {
+        "name": "--nt-color-humana-gold",
+        "type": "variable",
+        "purpose": "Defines the Humana gold color for branding. Value: #ffc600"
+    },
+    {
+        "name": "--nt-color-notification-high",
+        "type": "variable",
+        "purpose": "Defines the high severity notification color. Value: #aa0008"
+    },
+    {
+        "name": "--nt-color-notification-high-bg",
+        "type": "variable",
+        "purpose": "Defines the background color for high severity notifications. Value: #f7e6e7"
+    },
+    {
+        "name": "--nt-color-notification-medium",
+        "type": "variable",
+        "purpose": "Defines the medium severity notification color. Value: #be5000"
+    },
+    {
+        "name": "--nt-color-notification-medium-bg",
+        "type": "variable",
+        "purpose": "Defines the background color for medium severity notifications. Value: #fcf6ee"
+    },
+    {
+        "name": "--nt-color-notification-low",
+        "type": "variable",
+        "purpose": "Defines the low severity notification color. Value: #0062a6"
+    },
+    {
+        "name": "--nt-color-notification-low-bg",
+        "type": "variable",
+        "purpose": "Defines the background color for low severity notifications. Value: #e7f1f6"
+    },
+    {
+        "name": "--nt-color-utility-success",
+        "type": "variable",
+        "purpose": "Defines the color for successful utility actions. Value: #008200"
+    },
+    {
+        "name": "--nt-color-utility-success-bg",
+        "type": "variable",
+        "purpose": "Defines the background color for successful utility actions. Value: #eff5e6"
+    },
+    {
+        "name": "--nt-color-utility-error",
+        "type": "variable",
+        "purpose": "Defines the color for error utility actions. Value: #aa0008"
+    },
+    {
+        "name": "--nt-color-utility-error-bg",
+        "type": "variable",
+        "purpose": "Defines the background color for error utility actions. Value: #f7e6e7"
+    },
+    {
+        "name": "--nt-color-utility-disabled",
+        "type": "variable",
+        "purpose": "Defines the color for disabled utility elements. Value: #c8c8c8"
+    },
+    {
+        "name": "--nt-color-utility-selected-1",
+        "type": "variable",
+        "purpose": "Defines the first selected utility color. Value: #114a21"
+    },
+    {
+        "name": "--nt-color-utility-selected-2",
+        "type": "variable",
+        "purpose": "Defines the second selected utility color. Value: #5c9a1b"
+    },
+    {
+        "name": "--nt-color-utility-unselected",
+        "type": "variable",
+        "purpose": "Defines the color for unselected utility elements. Value: #707373"
+    },
+    {
+        "name": "--nt-font-weight-light",
+        "type": "variable",
+        "purpose": "Defines the font weight for light text. Value: 300"
+    },
+    {
+        "name": "--nt-font-weight-regular",
+        "type": "variable",
+        "purpose": "Defines the font weight for regular text. Value: 400"
+    },
+    {
+        "name": "--nt-font-weight-medium",
+        "type": "variable",
+        "purpose": "Defines the font weight for medium text. Value: 500"
+    },
+    {
+        "name": "--nt-font-weight-semibold",
+        "type": "variable",
+        "purpose": "Defines the font weight for semibold text. Value: 600"
+    },
+    {
+        "name": "--nt-font-weight-bold",
+        "type": "variable",
+        "purpose": "Defines the font weight for bold text. Value: 700"
+    },
+    {
+        "name": "--nt-font-family-default",
+        "type": "variable",
+        "purpose": "Defines the default font family for the application. Value: FS Humana, Calibri, Helvetica, Arial, SF Pro Text, Roboto, sans-serif"
+    },
+    {
+        "name": "--nt-font-line-height-none",
+        "type": "variable",
+        "purpose": "Defines the line height for text with no extra spacing. Value: 1"
+    },
+    {
+        "name": "--nt-font-line-height-compact",
+        "type": "variable",
+        "purpose": "Defines the line height for compact text spacing. Value: 1.25"
+    },
+    {
+        "name": "--nt-font-line-height-comfortable",
+        "type": "variable",
+        "purpose": "Defines the line height for comfortable text spacing. Value: 1.375"
+    },
+    {
+        "name": "--nt-font-line-height-open",
+        "type": "variable",
+        "purpose": "Defines the line height for open text spacing. Value: 1.5"
+    },
+    {
+        "name": "--nt-shadow-popover",
+        "type": "variable",
+        "purpose": "Defines the shadow for popover elements. Value: 0 0.125rem 0.25rem rgba(21, 25, 27, 0.12)"
+    },
+    {
+        "name": "--nt-shadow-card",
+        "type": "variable",
+        "purpose": "Defines the shadow for card elements. Value: 0 0.25rem 0.5rem rgba(21, 25, 27, 0.2)"
+    },
+    {
+        "name": "--nt-shadow-selection",
+        "type": "variable",
+        "purpose": "Defines the shadow for selected elements. Value: 0 0.5rem 1rem rgba(17, 74, 33, 0.2)"
+    },
+    {
+        "name": "--nt-size-borders-button",
+        "type": "variable",
+        "purpose": "Defines the border size for button elements. Value: 0.125rem"
+    },
+    {
+        "name": "--nt-size-borders-container",
+        "type": "variable",
+        "purpose": "Defines the border size for container elements. Value: 0.0625rem"
+    },
+    {
+        "name": "--nt-size-borders-form",
+        "type": "variable",
+        "purpose": "Defines the border size for form elements. Value: 0.0625rem"
+    },
+    {
+        "name": "--nt-size-borders-form-hover",
+        "type": "variable",
+        "purpose": "Defines the border size for form elements on hover. Value: 0.125rem"
+    },
+    {
+        "name": "--nt-size-borders-form-selected",
+        "type": "variable",
+        "purpose": "Defines the border size for selected form elements. Value: 0.1875rem"
+    },
+    {
+        "name": "--nt-size-borders-decoration",
+        "type": "variable",
+        "purpose": "Defines the border size for decorative elements. Value: 0.3125rem"
+    },
+    {
+        "name": "--nt-size-borders-table-cell",
+        "type": "variable",
+        "purpose": "Defines the border size for table cell elements. Value: 0.0625rem"
+    },
+    {
+        "name": "--nt-size-borders-divider",
+        "type": "variable",
+        "purpose": "Defines the border size for divider elements. Value: 0.0625rem"
+    },
+    {
+        "name": "--nt-size-icon-sm-1",
+        "type": "variable",
+        "purpose": "Defines the small icon size 1. Value: 1rem"
+    },
+    {
+        "name": "--nt-size-icon-sm-2",
+        "type": "variable",
+        "purpose": "Defines the small icon size 2. Value: 1.25rem"
+    },
+    {
+        "name": "--nt-size-icon-sm-3",
+        "type": "variable",
+        "purpose": "Defines the small icon size 3. Value: 1.5rem"
+    },
+    {
+        "name": "--nt-size-icon-sm-4",
+        "type": "variable",
+        "purpose": "Defines the small icon size 4. Value: 2rem"
+    },
+    {
+        "name": "--nt-size-icon-lg-1",
+        "type": "variable",
+        "purpose": "Defines the large icon size 1. Value: 2.5rem"
+    },
+    {
+        "name": "--nt-size-icon-lg-2",
+        "type": "variable",
+        "purpose": "Defines the large icon size 2. Value: 3rem"
+    },
+    {
+        "name": "--nt-size-icon-lg-3",
+        "type": "variable",
+        "purpose": "Defines the large icon size 3. Value: 4rem"
+    },
+    {
+        "name": "--nt-size-icon-lg-4",
+        "type": "variable",
+        "purpose": "Defines the large icon size 4. Value: 4.5rem"
+    },
+    {
+        "name": "--nt-size-icon-lg-5",
+        "type": "variable",
+        "purpose": "Defines the large icon size 5. Value: 6rem"
+    },
+    {
+        "name": "--nt-size-icon-lg-6",
+        "type": "variable",
+        "purpose": "Defines the large icon size 6. Value: 9rem"
+    },
+    {
+        "name": "--nt-size-radius-sharp",
+        "type": "variable",
+        "purpose": "Defines a sharp border radius with no rounding. Value: 0"
+    },
+    {
+        "name": "--nt-size-radius-fine",
+        "type": "variable",
+        "purpose": "Defines a fine border radius. Value: 0.25rem"
+    },
+    {
+        "name": "--nt-size-radius-rounded",
+        "type": "variable",
+        "purpose": "Defines a rounded border radius. Value: 0.5rem"
+    },
+    {
+        "name": "--nt-size-radius-smooth",
+        "type": "variable",
+        "purpose": "Defines a smooth border radius. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-radius-full",
+        "type": "variable",
+        "purpose": "Defines a fully rounded border radius, effectively creating a circle. Value: 99rem"
+    },
+    {
+        "name": "--nt-size-radius-h-curve-bottom-left",
+        "type": "variable",
+        "purpose": "Defines the border radius for the bottom left corner of a horizontal curve. Value: 2.5rem"
+    },
+    {
+        "name": "--nt-size-radius-h-curve-bottom-right",
+        "type": "variable",
+        "purpose": "Defines the border radius for the bottom right corner of a horizontal curve. Value: 0"
+    },
+    {
+        "name": "--nt-size-radius-h-curve-top-left",
+        "type": "variable",
+        "purpose": "Defines the border radius for the top left corner of a horizontal curve. Value: 0"
+    },
+    {
+        "name": "--nt-size-radius-h-curve-top-right",
+        "type": "variable",
+        "purpose": "Defines the border radius for the top right corner of a horizontal curve. Value: 0"
+    },
+    {
+        "name": "--nt-size-radius-chat-sent-bottom-left",
+        "type": "variable",
+        "purpose": "Defines the border radius for the bottom left corner of sent chat messages. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-radius-chat-sent-bottom-right",
+        "type": "variable",
+        "purpose": "Defines the border radius for the bottom right corner of sent chat messages. Value: 0"
+    },
+    {
+        "name": "--nt-size-radius-chat-sent-top-left",
+        "type": "variable",
+        "purpose": "Defines the border radius for the top left corner of sent chat messages. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-radius-chat-sent-top-right",
+        "type": "variable",
+        "purpose": "Defines the border radius for the top right corner of sent chat messages. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-radius-chat-received-bottom-left",
+        "type": "variable",
+        "purpose": "Defines the border radius for the bottom left corner of received chat messages. Value: 0"
+    },
+    {
+        "name": "--nt-size-radius-chat-received-bottom-right",
+        "type": "variable",
+        "purpose": "Defines the border radius for the bottom right corner of received chat messages. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-radius-chat-received-top-left",
+        "type": "variable",
+        "purpose": "Defines the border radius for the top left corner of received chat messages. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-radius-chat-received-top-right",
+        "type": "variable",
+        "purpose": "Defines the border radius for the top right corner of received chat messages. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-spacing-2",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 0.125rem. Value: 0.125rem"
+    },
+    {
+        "name": "--nt-size-spacing-4",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 0.25rem. Value: 0.25rem"
+    },
+    {
+        "name": "--nt-size-spacing-8",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 0.5rem. Value: 0.5rem"
+    },
+    {
+        "name": "--nt-size-spacing-12",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 0.75rem. Value: 0.75rem"
+    },
+    {
+        "name": "--nt-size-spacing-16",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 1rem. Value: 1rem"
+    },
+    {
+        "name": "--nt-size-spacing-20",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 1.25rem. Value: 1.25rem"
+    },
+    {
+        "name": "--nt-size-spacing-24",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 1.5rem. Value: 1.5rem"
+    },
+    {
+        "name": "--nt-size-spacing-28",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 1.75rem. Value: 1.75rem"
+    },
+    {
+        "name": "--nt-size-spacing-32",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 2rem. Value: 2rem"
+    },
+    {
+        "name": "--nt-size-spacing-36",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 2.25rem. Value: 2.25rem"
+    },
+    {
+        "name": "--nt-size-spacing-48",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 3rem. Value: 3rem"
+    },
+    {
+        "name": "--nt-size-spacing-56",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 3.5rem. Value: 3.5rem"
+    },
+    {
+        "name": "--nt-size-spacing-72",
+        "type": "variable",
+        "purpose": "Defines a spacing size of 4.5rem. Value: 4.5rem"
+    },
+    {
+        "name": "--nt-size-font-sm",
+        "type": "variable",
+        "purpose": "Defines a small font size. Value: 0.9375rem"
+    },
+    {
+        "name": "--nt-size-font-base",
+        "type": "variable",
+        "purpose": "Defines the base font size. Value: 1rem"
+    },
+    {
+        "name": "--nt-size-font-lg",
+        "type": "variable",
+        "purpose": "Defines a large font size. Value: 1.1875rem"
+    },
+    {
+        "name": "--nt-size-font-xl",
+        "type": "variable",
+        "purpose": "Defines an extra-large font size. Value: 1.25rem"
+    },
+    {
+        "name": "--nt-size-font-2xl",
+        "type": "variable",
+        "purpose": "Defines a 2x extra-large font size. Value: 1.375rem"
+    },
+    {
+        "name": "--nt-size-font-3xl",
+        "type": "variable",
+        "purpose": "Defines a 3x extra-large font size. Value: 1.5rem"
+    },
+    {
+        "name": "--nt-size-font-4xl",
+        "type": "variable",
+        "purpose": "Defines a 4x extra-large font size. Value: 1.75rem"
+    },
+    {
+        "name": "--nt-size-font-5xl",
+        "type": "variable",
+        "purpose": "Defines a 5x extra-large font size. Value: 2rem"
+    },
+    {
+        "name": "--nt-size-font-6xl",
+        "type": "variable",
+        "purpose": "Defines a 6x extra-large font size. Value: 2.25rem"
+    },
+    {
+        "name": "--nt-size-font-7xl",
+        "type": "variable",
+        "purpose": "Defines a 7x extra-large font size. Value: 2.625rem"
+    },
+    {
+        "name": "--nt-size-font-8xl",
+        "type": "variable",
+        "purpose": "Defines an 8x extra-large font size. Value: 3.125rem"
+    },
+    {
+        "name": "--nt-breakpoint-small",
+        "type": "variable",
+        "purpose": "Defines the small breakpoint for responsive design. Value: 576"
+    },
+    {
+        "name": "--nt-breakpoint-medium",
+        "type": "variable",
+        "purpose": "Defines the medium breakpoint for responsive design. Value: 768"
+    },
+    {
+        "name": "--nt-breakpoint-large",
+        "type": "variable",
+        "purpose": "Defines the large breakpoint for responsive design. Value: 1200"
+    },
+    {
+        "name": "--nt-breakpoint-x-large",
+        "type": "variable",
+        "purpose": "Defines the extra-large breakpoint for responsive design. Value: 1500"
+    },
+    {
+        "name": "--nt-z-index-0",
+        "type": "variable",
+        "purpose": "Defines a z-index value of 0. Value: 0"
+    },
+    {
+        "name": "--nt-z-index-100",
+        "type": "variable",
+        "purpose": "Defines a z-index value of 100. Value: 100"
+    },
+    {
+        "name": "--nt-z-index-200",
+        "type": "variable",
+        "purpose": "Defines a z-index value of 200. Value: 200"
+    },
+    {
+        "name": "--nt-z-index-300",
+        "type": "variable",
+        "purpose": "Defines a z-index value of 300. Value: 300"
+    },
+    {
+        "name": "--nt-z-index-400",
+        "type": "variable",
+        "purpose": "Defines a z-index value of 400. Value: 400"
+    },
+    {
+        "name": "--nt-z-index-500",
+        "type": "variable",
+        "purpose": "Defines a z-index value of 500. Value: 500"
+    },
+    {
+        "name": "--nt-z-index-auto",
+        "type": "variable",
+        "purpose": "Defines a z-index value of auto. Value: auto"
+    },
+    {
+        "name": "--nt-z-index-top",
+        "type": "variable",
+        "purpose": "Defines a high z-index value for elements that need to be on top. Value: 99999"
+    },
+    {
+        "name": "--nt-z-index-bottom",
+        "type": "variable",
+        "purpose": "Defines a low z-index value for elements that need to be behind others. Value: -100"
+    },
+    {
+        "name": "--nb-h1-color",
+        "type": "variable",
+        "purpose": "Defines the color for the h1 heading. Value: var(--nt-color-font-heading-large)"
+    },
+    {
+        "name": "--nb-h1-font-size",
+        "type": "variable",
+        "purpose": "Defines the font size for the h1 heading. Value: var(--nt-size-font-6xl)"
+    },
+    {
+        "name": "--nb-h1-font-weight",
+        "type": "variable",
+        "purpose": "Defines the font weight for the h1 heading. Value: var(--nt-font-weight-light)"
+    },
+    {
+        "name": "--nb-h1-line-height",
+        "type": "variable",
+        "purpose": "Defines the line height for the h1 heading. Value: var(--nt-font-line-height-compact)"
+    },
+    {
+        "name": "--nb-h2-color",
+        "type": "variable",
+        "purpose": "Defines the color for the h2 heading. Value: var(--nt-color-font-heading-large)"
+    },
+    {
+        "name": "--nb-h2-font-size",
+        "type": "variable",
+        "purpose": "Defines the font size for the h2 heading. Value: var(--nt-size-font-4xl)"
+    },
+    {
+        "name": "--nb-h2-font-weight",
+        "type": "variable",
+        "purpose": "Defines the font weight for the h2 heading. Value: var(--nt-font-weight-light)"
+    },
+    {
+        "name": "--nb-h2-line-height",
+        "type": "variable",
+        "purpose": "Defines the line height for the h2 heading. Value: var(--nt-font-line-height-comfortable)"
+    },
+    {
+        "name": "--nb-h3-color",
+        "type": "variable",
+        "purpose": "Defines the color for the h3 heading. Value: var(--nt-color-font-primary)"
+    },
+    {
+        "name": "--nb-h3-font-size",
+        "type": "variable",
+        "purpose": "Defines the font size for the h3 heading. Value: var(--nt-size-font-2xl)"
+    },
+    {
+        "name": "--nb-h3-font-weight",
+        "type": "variable",
+        "purpose": "Defines the font weight for the h3 heading. Value: var(--nt-font-weight-bold)"
+    },
+    {
+        "name": "--nb-h3-line-height",
+        "type": "variable",
+        "purpose": "Defines the line height for the h3 heading. Value: var(--nt-font-line-height-comfortable)"
+    },
+    {
+        "name": "--nb-h4-color",
+        "type": "variable",
+        "purpose": "Defines the color for the h4 heading. Value: var(--nt-color-font-primary)"
+    },
+    {
+        "name": "--nb-h4-font-size",
+        "type": "variable",
+        "purpose": "Defines the font size for the h4 heading. Value: var(--nt-size-font-xl)"
+    },
+    {
+        "name": "--nb-h4-font-weight",
+        "type": "variable",
+        "purpose": "Defines the font weight for the h4 heading. Value: var(--nt-font-weight-regular)"
+    },
+    {
+        "name": "--nb-h4-line-height",
+        "type": "variable",
+        "purpose": "Defines the line height for the h4 heading. Value: var(--nt-font-line-height-comfortable)"
+    },
+    {
+        "name": "--nb-h5-color",
+        "type": "variable",
+        "purpose": "Defines the color for the h5 heading. Value: var(--nt-color-font-primary)"
+    },
+    {
+        "name": "--nb-h5-font-size",
+        "type": "variable",
+        "purpose": "Defines the font size for the h5 heading. Value: var(--nt-size-font-lg)"
+    },
+    {
+        "name": "--nb-h5-font-weight",
+        "type": "variable",
+        "purpose": "Defines the font weight for the h5 heading. Value: var(--nt-font-weight-bold)"
+    },
+    {
+        "name": "--nb-h5-line-height",
+        "type": "variable",
+        "purpose": "Defines the line height for the h5 heading. Value: var(--nt-font-line-height-compact)"
+    },
+    {
+        "name": "--nb-h6-color",
+        "type": "variable",
+        "purpose": "Defines the color for the h6 heading. Value: var(--nt-color-font-primary)"
+    },
+    {
+        "name": "--nb-h6-font-size",
+        "type": "variable",
+        "purpose": "Defines the font size for the h6 heading. Value: var(--nt-size-font-base)"
+    },
+    {
+        "name": "--nb-h6-font-weight",
+        "type": "variable",
+        "purpose": "Defines the font weight for the h6 heading. Value: var(--nt-font-weight-bold)"
+    },
+    {
+        "name": "--nb-h6-line-height",
+        "type": "variable",
+        "purpose": "Defines the line height for the h6 heading. Value: var(--nt-font-line-height-open)"
+    }
+]

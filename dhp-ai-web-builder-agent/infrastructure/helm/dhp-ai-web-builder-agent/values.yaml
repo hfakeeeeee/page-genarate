@@ -1,0 +1,42 @@
+host: ''
+
+appName: dhp-ai-web-builder-agent
+
+appServiceName: dhp-ai-web-builder-agent
+
+virtualAppName: dhp-ai-web-builder-agent
+
+gateway: ''
+
+replicaCount: 1
+
+image:
+  name: dhp-ai-web-builder-agent
+  repository: 'imageRepository'
+  tag: 'imageTag'
+  pullPolicy: Always
+containerPort: 8080
+
+service:
+  name: http
+  port: 443
+
+http:
+  match:
+    port: 443
+
+resources:
+  limits:
+    memory: 6Gi
+  requests:
+    cpu: 50m
+    memory: 2.5Gi
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+log:
+  level: DEBUG
