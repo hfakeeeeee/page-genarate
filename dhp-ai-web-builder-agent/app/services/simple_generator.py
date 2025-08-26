@@ -91,9 +91,16 @@ LANGUAGE: {language}
 
 YOUR MISSION: Create a complete, modern, beautiful React application that fulfills this request perfectly.
 
+MANDATORY REQUIREMENTS:
+1. Create AT LEAST 5-8 files (not just App.{main_ext})
+2. Build multiple functional React components
+3. Use proper component structure and organization
+4. Include styling for each component
+5. Create a realistic, functional application
+
 REACT-FOCUSED REQUIREMENTS:
 - Use React 18+ with modern hooks and patterns
-- Create a well-structured component hierarchy
+- Create a well-structured component hierarchy with MULTIPLE components
 - Use {language} with proper {import_type}
 - Include modern CSS with responsive design
 - Follow React best practices and conventions
@@ -107,25 +114,37 @@ TECHNICAL SPECIFICATIONS:
 - Styling: Modern CSS with CSS modules or styled-components
 - File Extensions: .{main_ext} for components, .css for styles
 
-DELIVERY FORMAT:
-Return a JSON object with this EXACT structure:
+COMPONENT CREATION GUIDELINES:
+- Create specific, named components (not generic "ComponentName")
+- Each component should have its own CSS file
+- Build a proper component hierarchy
+- Include at least 3-5 custom components beyond App
+- Use meaningful file and component names
+- Create functional, interactive components
+
+DELIVERY FORMAT - CRITICAL:
+Return ONLY valid JSON. Use proper escaping for strings. Create REAL component names, not placeholders.
+
+Example structure (create your own real components):
 {{
-  "project_name": "YourChosenName",
+  "project_name": "descriptive-project-name",
   "framework": "React",
   "language": "{language}",
-  "description": "Brief description of what you created",
+  "description": "What you actually built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, and necessary dependencies",
-    "index.html": "Main HTML file with proper meta tags and title",
+    "package.json": "Complete package.json with React 18, Vite, and dependencies",
+    "index.html": "Main HTML file with title matching the project",
     "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React",{config_files}
-    "src/main.{main_ext}": "React app entry point",
-    "src/App.{main_ext}": "Main App component",
+    "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
+    "src/App.{main_ext}": "Main App component that uses other components",
     "src/App.css": "App component styles",
     "src/index.css": "Global styles and CSS reset",
-    "src/components/ComponentName.{main_ext}": "Additional components as needed",
-    "src/components/ComponentName.css": "Component-specific styles",
-    "src/hooks/useCustomHook.{file_ext.split('x')[0]}": "Custom hooks if needed",
-    "src/utils/helpers.{file_ext.split('x')[0]}": "Utility functions if needed"
+    "src/components/Header.{main_ext}": "Header component example",
+    "src/components/Header.css": "Header styles",
+    "src/components/MainContent.{main_ext}": "Main content component",
+    "src/components/MainContent.css": "Main content styles",
+    "src/components/Footer.{main_ext}": "Footer component",
+    "src/components/Footer.css": "Footer styles"
   }}
 }}
 
