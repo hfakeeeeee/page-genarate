@@ -4,8 +4,18 @@ from datetime import datetime
 from enum import Enum
 
 
+class ReactLanguage(str, Enum):
+    JAVASCRIPT = "JavaScript"
+    TYPESCRIPT = "TypeScript"
+
+
 class SimpleGenerationRequest(BaseModel):
-    description: str = Field(..., description="Simple description of what you want to build")
+    description: str = Field(..., description="Description of what you want to build")
+    framework: str = Field(default="React", description="Frontend framework (React only)")
+    language: ReactLanguage = Field(default=ReactLanguage.JAVASCRIPT, description="Programming language (JavaScript or TypeScript)")
+    
+    class Config:
+        use_enum_values = True
 
 
 class SimpleProjectResult(BaseModel):

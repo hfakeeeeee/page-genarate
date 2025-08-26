@@ -18,14 +18,28 @@ project_manager = ProjectManagerService()
 generation_status: Dict[str, GenerationStatus] = {}
 
 
-@router.post("/generate", summary="Generate project with AI freedom")
+@router.post("/generate", summary="Generate React project with AI")
 async def generate_project_freely(
     request: SimpleGenerationRequest,
     background_tasks: BackgroundTasks
 ):
     """
-    Generate a complete project with minimal constraints.
-    Let AI decide everything: structure, design, functionality, technology choices.
+    Generate a complete React project with AI assistance.
+    
+    The AI will create a full React application based on your description,
+    using either JavaScript or TypeScript as specified.
+    
+    Input:
+    - description: What you want to build
+    - framework: React (fixed)
+    - language: JavaScript or TypeScript
+    
+    The AI will handle:
+    - Project structure and architecture
+    - Component design and implementation
+    - Styling and responsive design
+    - Modern React patterns and best practices
+    - Complete working application with all necessary files
     """
     generation_id = f"simple_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
@@ -34,7 +48,7 @@ async def generate_project_freely(
         id=generation_id,
         status="starting",
         progress=0,
-        message="AI is creating your project...",
+        message=f"AI is preparing to create your React ({request.language}) project...",
         created_at=datetime.now()
     )
 
@@ -47,7 +61,7 @@ async def generate_project_freely(
 
     return {
         "generation_id": generation_id, 
-        "message": "AI is now creating your project with complete creative freedom"
+        "message": f"AI is creating your React ({request.language}) project: {request.description}"
     }
 
 
@@ -89,11 +103,13 @@ async def generate_project_background(generation_id: str, request: SimpleGenerat
         # Update status
         status.status = "generating"
         status.progress = 50
-        status.message = "AI is designing and building your project..."
+        status.message = f"AI is designing and building your React ({request.language}) project..."
 
         # Generate complete project with AI freedom
         project_result = await simple_generator.generate_complete_project(
             request.description,
+            request.framework,
+            request.language,
             progress_callback=lambda p, m: update_progress(generation_id, p, m)
         )
 

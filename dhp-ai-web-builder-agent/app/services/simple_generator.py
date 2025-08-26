@@ -28,21 +28,23 @@ class SimpleGeneratorService:
     async def generate_complete_project(
         self,
         description: str,
+        framework: str = "React",
+        language: str = "JavaScript",
         progress_callback: Optional[Callable[[int, str], None]] = None
     ) -> SimpleProjectResult:
         """
-        Generate a complete project with total AI freedom.
-        No constraints, no rules, just pure creativity.
+        Generate a complete React project with AI freedom.
+        Focused on React with JavaScript or TypeScript.
         """
         try:
             if progress_callback:
                 progress_callback(10, "AI is analyzing your request...")
 
-            # The ONE ultimate instruction - let AI decide everything
-            ultimate_instruction = self._create_ultimate_instruction(description)
+            # Create instruction with specific framework and language
+            ultimate_instruction = self._create_ultimate_instruction(description, framework, language)
 
             if progress_callback:
-                progress_callback(30, "AI is designing the complete solution...")
+                progress_callback(30, f"AI is designing the complete {framework} ({language}) solution...")
 
             # Single AI call to generate everything
             response = await self._call_llm(ultimate_instruction)
@@ -62,63 +64,101 @@ class SimpleGeneratorService:
             self.logger.error(f"Failed to generate project: {str(e)}")
             raise
 
-    def _create_ultimate_instruction(self, description: str) -> str:
+    def _create_ultimate_instruction(self, description: str, framework: str, language: str) -> str:
         """
-        The ONE ultimate instruction that gives AI complete freedom.
-        No micro-management, no detailed constraints.
+        Create React-focused instruction that gives AI complete freedom within React ecosystem.
         """
+        
+        # Determine file extensions and imports based on language
+        if language.lower() in ['typescript', 'ts']:
+            file_ext = "tsx" if "component" in description.lower() else "ts"
+            main_ext = "tsx"
+            import_type = "TypeScript with proper type definitions"
+            config_files = '''
+    "tsconfig.json": "{\\"compilerOptions\\": {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"], \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false, \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true, \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true, \\"noEmit\\": true, \\"jsx\\": \\"react-jsx\\"}, \\"include\\": [\\"src\\"], \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",'''
+        else:
+            file_ext = "jsx"
+            main_ext = "jsx"
+            import_type = "Modern JavaScript with ES6+ features"
+            config_files = ""
+        
         return f"""
-You are a world-class full-stack developer and designer with unlimited creative freedom.
+You are a world-class React developer with unlimited creative freedom.
 
-USER WANTS: {description}
+USER REQUEST: {description}
+FRAMEWORK: {framework}
+LANGUAGE: {language}
 
-YOUR MISSION: Create a complete, modern, beautiful web application that fulfills this request perfectly.
+YOUR MISSION: Create a complete, modern, beautiful React application that fulfills this request perfectly.
 
-TOTAL CREATIVE FREEDOM:
-- Choose ANY framework (React, Vue, Svelte, vanilla JS, etc.)
-- Choose ANY language (JavaScript, TypeScript, etc.)
-- Design ANY architecture you think is best
-- Create ANY visual design that looks amazing
-- Include ANY features that would make this great
-- Use ANY modern web technologies and patterns
-- Make ANY creative decisions that result in an outstanding product
+REACT-FOCUSED REQUIREMENTS:
+- Use React 18+ with modern hooks and patterns
+- Create a well-structured component hierarchy
+- Use {language} with proper {import_type}
+- Include modern CSS with responsive design
+- Follow React best practices and conventions
+- Use appropriate React patterns (hooks, context, etc.)
+- Create reusable components where appropriate
+
+TECHNICAL SPECIFICATIONS:
+- Framework: React (mandatory)
+- Language: {language}
+- Build Tool: Vite (for fast development)
+- Styling: Modern CSS with CSS modules or styled-components
+- File Extensions: .{main_ext} for components, .css for styles
 
 DELIVERY FORMAT:
-Return a JSON object with this structure:
+Return a JSON object with this EXACT structure:
 {{
   "project_name": "YourChosenName",
-  "framework": "YourChoice",
-  "language": "YourChoice", 
+  "framework": "React",
+  "language": "{language}",
   "description": "Brief description of what you created",
   "files": {{
-    "package.json": "...",
-    "index.html": "...",
-    "src/main.js": "...",
-    "src/App.vue": "...",
-    "src/components/Component1.vue": "...",
-    "src/style.css": "...",
-    "any/other/files.js": "..."
+    "package.json": "Complete package.json with React 18, Vite, and necessary dependencies",
+    "index.html": "Main HTML file with proper meta tags and title",
+    "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React",{config_files}
+    "src/main.{main_ext}": "React app entry point",
+    "src/App.{main_ext}": "Main App component",
+    "src/App.css": "App component styles",
+    "src/index.css": "Global styles and CSS reset",
+    "src/components/ComponentName.{main_ext}": "Additional components as needed",
+    "src/components/ComponentName.css": "Component-specific styles",
+    "src/hooks/useCustomHook.{file_ext.split('x')[0]}": "Custom hooks if needed",
+    "src/utils/helpers.{file_ext.split('x')[0]}": "Utility functions if needed"
   }}
 }}
 
 CRITICAL JSON FORMATTING RULES:
-- Ensure ALL backslashes in file content are properly escaped (use \\\\ instead of \\)
-- Ensure ALL quotes in file content are properly escaped (use \\" instead of ")
+- Ensure ALL backslashes in file content are properly escaped (use \\\\\\\\ instead of \\\\)
+- Ensure ALL quotes in file content are properly escaped (use \\\\" instead of ")
 - Each file content should be a valid JSON string value
 - Do not include any text before or after the JSON object
 - Make sure the JSON is valid and parseable
 
-GUIDELINES:
-- Make it BEAUTIFUL - use modern design principles
-- Make it FUNCTIONAL - include real features, not just placeholders
-- Make it COMPLETE - a fully working application
-- Make it MODERN - use current best practices
-- Be CREATIVE - surprise and delight
-- Include realistic content and data
-- Ensure it's responsive and accessible
-- Use proper project structure for your chosen framework
+REACT COMPONENT GUIDELINES:
+- Use functional components with hooks
+- Include proper prop types or TypeScript interfaces
+- Use modern React patterns (useState, useEffect, custom hooks)
+- Create clean, readable, and well-organized code
+- Include proper imports and exports
+- Use semantic HTML and accessible components
 
-Create something amazing. No limitations. No rules. Just pure excellence.
+CSS AND STYLING:
+- Use modern CSS features (Grid, Flexbox, CSS Variables)
+- Create responsive design that works on all devices
+- Use meaningful class names and CSS organization
+- Include hover effects and smooth animations
+- Follow modern design principles
+
+PROJECT STRUCTURE:
+- Organize components logically in src/components/
+- Use hooks/ folder for custom hooks
+- Use utils/ folder for helper functions
+- Keep styles modular and component-specific
+- Include proper README and development setup
+
+Create something amazing with React! Focus on clean code, great UX, and modern practices.
 
 REMEMBER: The response must be ONLY valid JSON with proper escaping!
 """
