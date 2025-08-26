@@ -62,7 +62,8 @@ class SimpleGeneratorService:
 
         except Exception as e:
             self.logger.error(f"Failed to generate project: {str(e)}")
-            raise
+            # Return fallback project instead of raising exception
+            return self._create_fallback_project()
 
     def _create_ultimate_instruction(self, description: str, framework: str, language: str) -> str:
         """
@@ -95,14 +96,21 @@ MANDATORY REQUIREMENTS:
 1. Create AT LEAST 5-8 files (not just App.{main_ext})
 2. Build multiple functional React components
 3. Use proper component structure and organization
-4. Include styling for each component
+4. Use Tailwind CSS for ALL styling (NO separate CSS files)
 5. Create a realistic, functional application
+
+STYLING REQUIREMENTS - TAILWIND ONLY:
+- Use Tailwind CSS for ALL styling
+- NO separate .css files for components
+- Include Tailwind directives in src/index.css only
+- Use Tailwind classes directly in className attributes
+- Follow Tailwind best practices for responsive design
+- Use Tailwind's built-in colors, spacing, and utilities
 
 REACT-FOCUSED REQUIREMENTS:
 - Use React 18+ with modern hooks and patterns
 - Create a well-structured component hierarchy with MULTIPLE components
 - Use {language} with proper {import_type}
-- Include modern CSS with responsive design
 - Follow React best practices and conventions
 - Use appropriate React patterns (hooks, context, etc.)
 - Create reusable components where appropriate
@@ -111,12 +119,19 @@ TECHNICAL SPECIFICATIONS:
 - Framework: React (mandatory)
 - Language: {language}
 - Build Tool: Vite (for fast development)
-- Styling: Modern CSS with CSS modules or styled-components
-- File Extensions: .{main_ext} for components, .css for styles
+- Styling: Tailwind CSS ONLY (no separate CSS files)
+- File Extensions: .{main_ext} for components
+
+CRITICAL SYNTAX RULES:
+- ALL JSX must be perfectly valid
+- NO unescaped quotes or special characters
+- Proper string escaping in JSON
+- Valid JavaScript/TypeScript syntax
+- No syntax errors whatsoever
 
 COMPONENT CREATION GUIDELINES:
 - Create specific, named components (not generic "ComponentName")
-- Each component should have its own CSS file
+- NO CSS files for components - use Tailwind classes only
 - Build a proper component hierarchy
 - Include at least 3-5 custom components beyond App
 - Use meaningful file and component names
@@ -132,28 +147,27 @@ Example structure (create your own real components):
   "language": "{language}",
   "description": "What you actually built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, and dependencies",
+    "package.json": "Complete package.json with React 18, Vite, Tailwind CSS dependencies",
     "index.html": "Main HTML file with title matching the project",
-    "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React",{config_files}
+    "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React",
+    "tailwind.config.js": "Tailwind CSS configuration file",
+    "postcss.config.js": "PostCSS configuration for Tailwind",{config_files}
     "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
     "src/App.{main_ext}": "Main App component that uses other components",
-    "src/App.css": "App component styles",
-    "src/index.css": "Global styles and CSS reset",
-    "src/components/Header.{main_ext}": "Header component example",
-    "src/components/Header.css": "Header styles",
-    "src/components/MainContent.{main_ext}": "Main content component",
-    "src/components/MainContent.css": "Main content styles",
-    "src/components/Footer.{main_ext}": "Footer component",
-    "src/components/Footer.css": "Footer styles"
+    "src/index.css": "Global styles with Tailwind directives ONLY",
+    "src/components/Header.{main_ext}": "Header component with Tailwind styling",
+    "src/components/MainContent.{main_ext}": "Main content component with Tailwind styling",
+    "src/components/Footer.{main_ext}": "Footer component with Tailwind styling"
   }}
 }}
 
 CRITICAL JSON FORMATTING RULES:
-- Ensure ALL backslashes in file content are properly escaped (use \\\\\\\\ instead of \\\\)
-- Ensure ALL quotes in file content are properly escaped (use \\\\" instead of ")
-- Each file content should be a valid JSON string value
+- Ensure ALL backslashes in file content are properly escaped
+- Ensure ALL quotes in file content are properly escaped
+- Each file content should be valid JSON string value
 - Do not include any text before or after the JSON object
 - Make sure the JSON is valid and parseable
+- NO syntax errors in any JavaScript/React code
 
 REACT COMPONENT GUIDELINES:
 - Use functional components with hooks
@@ -163,23 +177,28 @@ REACT COMPONENT GUIDELINES:
 - Include proper imports and exports
 - Use semantic HTML and accessible components
 
-CSS AND STYLING:
-- Use modern CSS features (Grid, Flexbox, CSS Variables)
-- Create responsive design that works on all devices
-- Use meaningful class names and CSS organization
-- Include hover effects and smooth animations
-- Follow modern design principles
+TAILWIND CSS GUIDELINES:
+- Use className with Tailwind utility classes
+- Responsive design with sm:, md:, lg:, xl: prefixes
+- Use Tailwind's color palette (bg-blue-500, text-gray-800, etc.)
+- Proper spacing with p-4, m-2, space-y-4, etc.
+- Flexbox and Grid with flex, grid, items-center, justify-between
+- Hover and focus states with hover:, focus: prefixes
 
-PROJECT STRUCTURE:
-- Organize components logically in src/components/
-- Use hooks/ folder for custom hooks
-- Use utils/ folder for helper functions
-- Keep styles modular and component-specific
-- Include proper README and development setup
+CRITICAL SYNTAX VALIDATION:
+- ALL JSX must be perfectly valid and well-formed
+- Proper quotes in JSX attributes (use double quotes consistently)
+- No unescaped special characters in strings
+- Valid JavaScript/TypeScript syntax throughout
+- Proper component imports and exports
+- No malformed HTML elements or attributes
 
-Create something amazing with React! Focus on clean code, great UX, and modern practices.
-
-REMEMBER: The response must be ONLY valid JSON with proper escaping!
+RESPONSE FORMAT - FINAL REQUIREMENTS:
+- Return ONLY valid JSON with proper escaping
+- No markdown, no explanations, just JSON
+- Create specific component names, not placeholders
+- Ensure every file contains syntactically correct code
+- Test all code for syntax errors before including
 """
 
     async def _call_llm(self, instruction: str) -> str:
@@ -273,7 +292,6 @@ REMEMBER: The response must be ONLY valid JSON with proper escaping!
                 )
             except Exception as e2:
                 self.logger.error(f"Aggressive fix also failed: {str(e2)}")
-                # Fallback: create a minimal project
                 return self._create_fallback_project()
         except Exception as e:
             self.logger.error(f"Failed to parse response: {str(e)}")
@@ -439,56 +457,222 @@ REMEMBER: The response must be ONLY valid JSON with proper escaping!
             })
 
     def _create_fallback_project(self) -> SimpleProjectResult:
-        """Create a fallback project if AI response parsing fails"""
+        """Create a better fallback project with Tailwind CSS if AI response parsing fails"""
         return SimpleProjectResult(
-            project_name="Fallback Project",
+            project_name="React Todo App",
             framework="React",
             language="JavaScript",
-            description="A simple fallback project",
+            description="A complete React todo application with Tailwind CSS (AI fallback)",
             files={
-                "package.json": '''{{
-  "name": "fallback-project",
+                "package.json": '''{
+  "name": "react-todo-app",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {{
+  "scripts": {
     "dev": "vite",
-    "build": "vite build"
-  }},
-  "dependencies": {{
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }},
-  "devDependencies": {{
+  },
+  "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.4.0"
-  }}
-}}''',
+    "vite": "^4.4.0",
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  }
+}''',
                 "index.html": '''<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fallback Project</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Todo App</title>
 </head>
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>''',
+                "vite.config.js": '''import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+})''',
+                "tailwind.config.js": '''/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}''',
+                "postcss.config.js": '''export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}''',
                 "src/main.jsx": '''import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)''',
-                "src/App.jsx": '''import React from 'react'
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)''',
+                "src/App.jsx": '''import React, { useState } from 'react'
+import Header from './components/Header.jsx'
+import TodoForm from './components/TodoForm.jsx'
+import TodoList from './components/TodoList.jsx'
 
 function App() {
+  const [todos, setTodos] = useState([
+    { id: 1, text: 'Fix Azure OpenAI API access', completed: false },
+    { id: 2, text: 'Test multi-file generation', completed: false }
+  ])
+
+  const addTodo = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      text,
+      completed: false
+    }
+    setTodos([...todos, newTodo])
+  }
+
+  const toggleTodo = (id) => {
+    setTodos(todos.map(todo => 
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ))
+  }
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id))
+  }
+
   return (
-    <div style={{padding: '2rem', textAlign: 'center'}}>
-      <h1>Welcome to Your AI Generated Project!</h1>
-      <p>This is a fallback project. The AI will create something much better!</p>
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        <Header />
+        <TodoForm onAdd={addTodo} />
+        <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+      </div>
     </div>
   )
 }
 
-export default App'''
+export default App''',
+                "src/index.css": '''@tailwind base;
+@tailwind components;
+@tailwind utilities;''',
+                "src/components/Header.jsx": '''import React from 'react'
+
+function Header() {
+  return (
+    <header className="text-center mb-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-2">📝 Todo App</h1>
+      <p className="text-red-600 font-semibold bg-yellow-100 p-3 rounded-lg border border-yellow-300">
+        Note: This is a fallback project. Fix Azure OpenAI API for AI-generated projects!
+      </p>
+    </header>
+  )
+}
+
+export default Header''',
+                "src/components/TodoForm.jsx": '''import React, { useState } from 'react'
+
+function TodoForm({ onAdd }) {
+  const [text, setText] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (text.trim()) {
+      onAdd(text.trim())
+      setText('')
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Add a new todo..."
+        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      />
+      <button
+        type="submit"
+        className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+      >
+        Add
+      </button>
+    </form>
+  )
+}
+
+export default TodoForm''',
+                "src/components/TodoList.jsx": '''import React from 'react'
+import TodoItem from './TodoItem.jsx'
+
+function TodoList({ todos, onToggle, onDelete }) {
+  if (todos.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-500 italic">No todos yet. Add one above!</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-2">
+      {todos.map(todo => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggle={onToggle}
+          onDelete={onDelete}
+        />
+      ))}
+    </div>
+  )
+}
+
+export default TodoList''',
+                "src/components/TodoItem.jsx": '''import React from 'react'
+
+function TodoItem({ todo, onToggle, onDelete }) {
+  return (
+    <div className={`flex items-center p-3 bg-white border rounded-lg shadow-sm ${todo.completed ? 'opacity-75' : ''}`}>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => onToggle(todo.id)}
+        className="mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500"
+      />
+      <span className={`flex-1 ${todo.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
+        {todo.text}
+      </span>
+      <button
+        onClick={() => onDelete(todo.id)}
+        className="ml-3 px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+      >
+        Delete
+      </button>
+    </div>
+  )
+}
+
+export default TodoItem'''
             }
         )
