@@ -62,8 +62,6 @@ class SimpleGeneratorService:
 
         except Exception as e:
             self.logger.error(f"Failed to generate project: {str(e)}")
-            # Return fallback project instead of raising exception
-            return self._create_fallback_project()
 
     def _create_ultimate_instruction(self, description: str, framework: str, language: str) -> str:
         """
@@ -84,36 +82,64 @@ class SimpleGeneratorService:
             config_files = ""
         
         return f"""
-You are a world-class React developer with unlimited creative freedom.
+You are a world-class React developer creating MODERN, MULTI-PAGE applications with unlimited creative freedom.
 
 USER REQUEST: {description}
 FRAMEWORK: {framework}
 LANGUAGE: {language}
 
-YOUR MISSION: Create a complete, modern, beautiful React application that fulfills this request perfectly.
+YOUR MISSION: Create a complete, modern, beautiful React application with MULTIPLE PAGES and real navigation.
 
 MANDATORY REQUIREMENTS:
-1. Create AT LEAST 5-8 files (not just App.{main_ext})
-2. Build multiple functional React components
-3. Use proper component structure and organization
+1. Create AT LEAST 8-12 files with MULTIPLE PAGES
+2. Implement REAL ROUTING (React Router) between pages - NO MODALS for navigation
+3. Build a modern, clean, sophisticated design
 4. Use Tailwind CSS for ALL styling (NO separate CSS files)
-5. Create a realistic, functional application
+5. Create realistic categories/sections relevant to the website type
+6. Include proper navigation menu/header with working links
+
+MULTI-PAGE NAVIGATION REQUIREMENTS:
+- Install and use React Router DOM for real page navigation
+- Create separate page components (Home, About, Products, Contact, etc.)
+- Implement working navigation between pages (not modals or tabs)
+- Include a navigation header/menu with clickable links
+- Each page should be a separate component with its own route
+- Use proper React Router patterns (BrowserRouter, Routes, Route, Link)
+
+SMART CATEGORIZATION REQUIREMENTS:
+- Analyze the website type and create relevant categories automatically
+- For e-commerce: Categories like Electronics, Clothing, Books, etc.
+- For restaurants: Categories like Appetizers, Main Courses, Desserts, etc. 
+- For portfolios: Categories like Projects, Skills, Experience, etc.
+- For blogs: Categories like Technology, Lifestyle, Travel, etc.
+- For business: Categories like Services, About Us, Team, Contact, etc.
+- Make categories meaningful and realistic for the specific website type
+
+MODERN DESIGN REQUIREMENTS:
+- Ultra-modern, clean, minimalist aesthetic
+- Use contemporary design patterns (glassmorphism, gradients, shadows)
+- Sophisticated color schemes and typography
+- Professional spacing and layout
+- Smooth animations and hover effects
+- Mobile-first responsive design
+- Use modern Tailwind utilities (backdrop-blur, shadow-xl, gradient backgrounds)
+- Contemporary UI elements (cards, hero sections, call-to-action buttons)
 
 STYLING REQUIREMENTS - TAILWIND ONLY:
 - Use Tailwind CSS for ALL styling
-- NO separate .css files for components
+- NO separate .css files for components  
 - Include Tailwind directives in src/index.css only
-- Use Tailwind classes directly in className attributes
-- Follow Tailwind best practices for responsive design
-- Use Tailwind's built-in colors, spacing, and utilities
+- Use advanced Tailwind features (gradients, backdrop-blur, transforms)
+- Implement modern color palettes (slate, zinc, stone for neutrals)
+- Use sophisticated spacing and typography scales
 
 REACT-FOCUSED REQUIREMENTS:
 - Use React 18+ with modern hooks and patterns
-- Create a well-structured component hierarchy with MULTIPLE components
+- Implement React Router for multi-page navigation
 - Use {language} with proper {import_type}
-- Follow React best practices and conventions
-- Use appropriate React patterns (hooks, context, etc.)
-- Create reusable components where appropriate
+- Create reusable layout components
+- Implement proper state management across pages
+- Use React best practices and modern patterns
 
 TECHNICAL SPECIFICATIONS:
 - Framework: React (mandatory)
@@ -132,24 +158,37 @@ CRITICAL SYNTAX RULES:
 COMPONENT CREATION GUIDELINES:
 - Create specific, named components (not generic "ComponentName")
 - NO CSS files for components - use Tailwind classes only
-- Build a proper component hierarchy
-- Include at least 3-5 custom components beyond App
+- Build a proper component hierarchy with MULTIPLE PAGES
+- Include at least 4-6 page components beyond App
 - Use meaningful file and component names
-- Create functional, interactive components
+- Create functional, interactive components with real routing
 
 DELIVERY FORMAT - CRITICAL:
 Return ONLY valid JSON. Use proper escaping for strings. Create REAL component names, not placeholders.
 
-Example structure (create your own real components):
+Example structure (adapt to your specific website type):
 {{
   "project_name": "descriptive-project-name",
   "framework": "React",
   "language": "{language}",
   "description": "What you actually built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, Tailwind CSS dependencies",
+    "package.json": "Complete package.json with React 18, Vite, Tailwind CSS, React Router DOM",
     "index.html": "Main HTML file with title matching the project",
     "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React",
+    "tailwind.config.js": "Tailwind CSS configuration file",
+    "postcss.config.js": "PostCSS configuration for Tailwind",{config_files}
+    "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
+    "src/App.{main_ext}": "Main App component with Router setup and Routes",
+    "src/index.css": "Global styles with Tailwind directives ONLY",
+    "src/components/Layout.{main_ext}": "Layout component with Header/Footer",
+    "src/components/Navigation.{main_ext}": "Navigation component with routing links", 
+    "src/pages/Home.{main_ext}": "Home page component",
+    "src/pages/About.{main_ext}": "About page component",
+    "src/pages/Products.{main_ext}": "Products/Services page component",
+    "src/pages/Contact.{main_ext}": "Contact page component"
+  }}
+}}
     "tailwind.config.js": "Tailwind CSS configuration file",
     "postcss.config.js": "PostCSS configuration for Tailwind",{config_files}
     "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
@@ -292,10 +331,8 @@ RESPONSE FORMAT - FINAL REQUIREMENTS:
                 )
             except Exception as e2:
                 self.logger.error(f"Aggressive fix also failed: {str(e2)}")
-                return self._create_fallback_project()
         except Exception as e:
             self.logger.error(f"Failed to parse response: {str(e)}")
-            return self._create_fallback_project()
 
     def _fix_json_escapes(self, json_str: str) -> str:
         """Fix common JSON escape issues that cause parsing errors"""
@@ -455,224 +492,3 @@ RESPONSE FORMAT - FINAL REQUIREMENTS:
                     "src/App.js": "import React from 'react'; function App() { return <div>Fallback App</div>; } export default App;"
                 }
             })
-
-    def _create_fallback_project(self) -> SimpleProjectResult:
-        """Create a better fallback project with Tailwind CSS if AI response parsing fails"""
-        return SimpleProjectResult(
-            project_name="React Todo App",
-            framework="React",
-            language="JavaScript",
-            description="A complete React todo application with Tailwind CSS (AI fallback)",
-            files={
-                "package.json": '''{
-  "name": "react-todo-app",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.4.0",
-    "tailwindcss": "^3.3.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0"
-  }
-}''',
-                "index.html": '''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React Todo App</title>
-</head>
-<body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-</body>
-</html>''',
-                "vite.config.js": '''import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-})''',
-                "tailwind.config.js": '''/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}''',
-                "postcss.config.js": '''export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}''',
-                "src/main.jsx": '''import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)''',
-                "src/App.jsx": '''import React, { useState } from 'react'
-import Header from './components/Header.jsx'
-import TodoForm from './components/TodoForm.jsx'
-import TodoList from './components/TodoList.jsx'
-
-function App() {
-  const [todos, setTodos] = useState([
-    { id: 1, text: 'Fix Azure OpenAI API access', completed: false },
-    { id: 2, text: 'Test multi-file generation', completed: false }
-  ])
-
-  const addTodo = (text) => {
-    const newTodo = {
-      id: Date.now(),
-      text,
-      completed: false
-    }
-    setTodos([...todos, newTodo])
-  }
-
-  const toggleTodo = (id) => {
-    setTodos(todos.map(todo => 
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ))
-  }
-
-  const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id))
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-        <Header />
-        <TodoForm onAdd={addTodo} />
-        <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
-      </div>
-    </div>
-  )
-}
-
-export default App''',
-                "src/index.css": '''@tailwind base;
-@tailwind components;
-@tailwind utilities;''',
-                "src/components/Header.jsx": '''import React from 'react'
-
-function Header() {
-  return (
-    <header className="text-center mb-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">📝 Todo App</h1>
-      <p className="text-red-600 font-semibold bg-yellow-100 p-3 rounded-lg border border-yellow-300">
-        Note: This is a fallback project. Fix Azure OpenAI API for AI-generated projects!
-      </p>
-    </header>
-  )
-}
-
-export default Header''',
-                "src/components/TodoForm.jsx": '''import React, { useState } from 'react'
-
-function TodoForm({ onAdd }) {
-  const [text, setText] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (text.trim()) {
-      onAdd(text.trim())
-      setText('')
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Add a new todo..."
-        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
-      <button
-        type="submit"
-        className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-      >
-        Add
-      </button>
-    </form>
-  )
-}
-
-export default TodoForm''',
-                "src/components/TodoList.jsx": '''import React from 'react'
-import TodoItem from './TodoItem.jsx'
-
-function TodoList({ todos, onToggle, onDelete }) {
-  if (todos.length === 0) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-gray-500 italic">No todos yet. Add one above!</p>
-      </div>
-    )
-  }
-
-  return (
-    <div className="space-y-2">
-      {todos.map(todo => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onToggle={onToggle}
-          onDelete={onDelete}
-        />
-      ))}
-    </div>
-  )
-}
-
-export default TodoList''',
-                "src/components/TodoItem.jsx": '''import React from 'react'
-
-function TodoItem({ todo, onToggle, onDelete }) {
-  return (
-    <div className={`flex items-center p-3 bg-white border rounded-lg shadow-sm ${todo.completed ? 'opacity-75' : ''}`}>
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => onToggle(todo.id)}
-        className="mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500"
-      />
-      <span className={`flex-1 ${todo.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
-        {todo.text}
-      </span>
-      <button
-        onClick={() => onDelete(todo.id)}
-        className="ml-3 px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
-      >
-        Delete
-      </button>
-    </div>
-  )
-}
-
-export default TodoItem'''
-            }
-        )
