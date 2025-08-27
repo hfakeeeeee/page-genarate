@@ -82,20 +82,33 @@ class SimpleGeneratorService:
 
 DESIGN EXCELLENCE REQUIREMENTS:
 - Framework: {framework} with {language}
-- Build: 10-15 files with seamless React Router navigation
-- Style: Advanced Tailwind CSS ONLY (glass morphism, animations, gradients)
-- Modern Color Schemes: Use vibrant gradients (purple-blue, emerald-cyan, rose-orange)
-- Animations: Smooth transitions, hover effects, fade-ins, parallax scrolling
-- Typography: Modern font combinations (Inter, Poppins, custom Google Fonts)
+- Build: 7-15 files with seamless React Router navigation
+- Style: Advanced Tailwind CSS with CLEAN, MODERN aesthetics (NOT overly colorful)
+- Color Philosophy: Minimal, sophisticated, professional design
+- Animations: Subtle, smooth transitions and micro-interactions
+- Typography: Clean, readable fonts (Inter, system fonts)
+
+MODERN CLEAN COLOR PALETTE - MANDATORY:
+- Primary: Neutral color with ONE subtle accent color
+- Background: Clean color
+- Dark mode: Deep color not black (slate-900, gray-900, zinc-900)
+- Text: High contrast but not harsh 
+- AVOID: Multiple bright colors, rainbow gradients, too many accent colors
+- USE: Monochromatic schemes with subtle color variations
+
+CLEAN LAYOUT STANDARDS - CRITICAL:
+- Consistent spacing system (use p-4, p-6, p-8, p-12 systematically)
+- Proper margins and padding on ALL elements
+- Clean grid systems (grid-cols-1, grid-cols-2, grid-cols-3)
+- Consistent component sizing across all pages
+- Proper responsive breakpoints (sm:, md:, lg:, xl:)
+- NO layout breaks on mobile, tablet, or desktop
+- Uniform header/navigation height across pages
+- Consistent card sizes and spacing
+- Proper text alignment and hierarchy
 
 CREATIVE FREEDOM & INTELLIGENCE:
 - ANALYZE the website type and CREATE relevant pages intelligently
-- For E-commerce: Home, Shop, Categories, Product Details, Cart, Checkout, Account, Wishlist
-- For Restaurant: Home, Menu, Reservations, About Chef, Gallery, Reviews, Contact, Catering
-- For Portfolio: Home, Projects, Skills, Experience, Blog, Testimonials, Contact, Resume
-- For Business: Home, Services, About, Team, Projects, Testimonials, Blog, Contact, Pricing
-- For Agency: Home, Services, Portfolio, About, Team, Process, Blog, Contact, Case Studies
-- For SaaS: Home, Features, Pricing, About, Blog, Support, Login, Dashboard Preview
 - CREATE 8-12 meaningful pages that make sense for the specific website type
 - ADD unique features and sections that enhance user experience
 - THINK beyond basic pages - add creative, relevant functionality
@@ -107,51 +120,27 @@ IMAGE REQUIREMENTS - MANDATORY:
 - Use appropriate sizes: Hero images (1200x800), Cards (400x300), Avatars (100x100)
 - Add descriptive text parameter: https://placehold.co/800x600?text=Hero+Image
 
-ULTRA-MODERN DESIGN STANDARDS:
-- Glass morphism effects (backdrop-blur-xl, bg-white/10)
-- Dynamic gradients (from-purple-600 via-pink-600 to-blue-600)
-- Floating elements with shadows (shadow-2xl, shadow-purple-500/25)
-- Micro-interactions on buttons and cards
-- Animated navigation with smooth transitions
-- Hero sections with video/gradient backgrounds
-- Card layouts with hover transforms (hover:scale-105, hover:-translate-y-2)
-- Modern spacing and clean layouts (not cramped default styling)
+MODERN DESIGN ELEMENTS:
+- Subtle shadows (shadow-sm, shadow-md, shadow-lg - NOT shadow-2xl)
+- Clean borders (border-gray-200, border-slate-300)
+- Minimal use of gradients (only for subtle backgrounds)
+- Glass morphism effects used sparingly
+- Clean button designs with proper padding
+- Consistent rounded corners (rounded-lg, rounded-xl)
+- Proper whitespace and breathing room
 
-ADVANCED ANIMATIONS & EFFECTS:
-- Page transitions between routes
-- Staggered animations for lists/cards
-- Parallax scrolling sections
-- Loading animations and skeleton screens
-- Interactive buttons with ripple effects
-- Smooth scroll behavior
-- Animated counters and progress bars
-- Floating action buttons
-
-COLOR PALETTE REQUIREMENTS:
-- Primary: Modern gradients (purple-pink-blue, emerald-teal, rose-orange)
-- Background: Dark mode friendly (slate-900, gray-900 with gradients)
-- Accent: Bright, vibrant colors (emerald-400, cyan-400, violet-400)
-- Text: High contrast (white on dark, dark on light)
-- NO basic colors like plain blue, red, or green
-
-CREATIVE COMPONENTS & FEATURES:
-- Interactive dashboards with charts/graphs
-- Image galleries with lightbox effects
-- Search and filter functionality
-- Modal dialogs for forms/details
-- Dropdown menus with animations
-- Progress indicators and timelines
-- Testimonial carousels
-- FAQ accordions with smooth animations
-- Newsletter signup with validation
-- Social media integration sections
+RESPONSIVE DESIGN REQUIREMENTS:
+- Desktop optimization
+- Text scaling (text-sm, text-base, text-lg, text-xl)
+- Image responsiveness with proper aspect ratios
+- Navigation that works on all screen sizes
 
 STRUCTURE:
-- React 18+ with advanced hooks (useIntersectionObserver, useAnimation)
-- React Router with smooth page transitions
-- Framer Motion or CSS animations for micro-interactions
-- Responsive breakpoints (mobile-first, tablet, desktop)
-- Modern component patterns (compound components, render props)
+- React 18+ with modern hooks and clean patterns
+- React Router with smooth, consistent navigation
+- Consistent component architecture across pages
+- Proper error boundaries and loading states
+- Clean code organization and naming
 
 OUTPUT FORMAT:
 Return ONLY valid JSON with properly escaped strings:
@@ -161,32 +150,32 @@ Return ONLY valid JSON with properly escaped strings:
   "language": "{language}",
   "description": "Brief description of what you built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router, Framer Motion",
-    "index.html": "HTML with Google Fonts and meta tags",
+    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router",
+    "index.html": "HTML with proper meta tags and clean structure",
     "vite.config.{file_ext.split('x')[0]}": "Vite config with server: {{host: true, cors: true, allowedHosts: true}} - KEEP allowedHosts as boolean true",
-    "tailwind.config.js": "Extended Tailwind config with custom animations and gradients",
+    "tailwind.config.js": "Clean Tailwind config with consistent design tokens",
     "postcss.config.js": "PostCSS config for Tailwind",{config_files}
-    "src/main.{main_ext}": "React entry point with smooth scroll",
-    "src/App.{main_ext}": "Main App with animated Router transitions",
-    "src/index.css": "Global styles with Tailwind, custom animations, smooth scroll",
-    "src/components/Layout.{main_ext}": "Animated layout with glass morphism header/footer",
-    "src/components/Navigation.{main_ext}": "Modern nav with smooth transitions and active states",
-    "src/pages/Home.{main_ext}": "Hero section with gradients and animations",
-    "CREATE 8-12 MORE RELEVANT PAGES based on website type - BE CREATIVE AND INTELLIGENT"
+    "src/main.{main_ext}": "React entry point with clean setup",
+    "src/App.{main_ext}": "Main App with consistent Router structure",
+    "src/index.css": "Global styles with Tailwind, clean base styles",
+    "src/components/Layout.{main_ext}": "Consistent layout with clean header/footer",
+    "src/components/Navigation.{main_ext}": "Clean navigation with consistent styling",
+    "src/pages/Home.{main_ext}": "Clean hero section with professional design",
+    "CREATE 8-12 MORE RELEVANT PAGES based on website type - MAINTAIN LAYOUT CONSISTENCY"
   }}
 }}
 
 CRITICAL RULES:
 - BE CREATIVE - Don't just create basic pages, think about what users really need
 - ANALYZE the website purpose and create relevant, meaningful pages
-- NO basic/default styling - everything must be visually stunning
-- Use advanced Tailwind utilities (backdrop-blur, transform, transition-all)
-- Implement smooth animations for ALL interactive elements
-- Create depth with shadows, gradients, and layering
-- Modern responsive design with proper breakpoints
+- CLEAN and MODERN over colorful and flashy
+- CONSISTENT layout and spacing across ALL pages
+- ONE accent color maximum, rest neutral
+- Proper responsive design that never breaks
+- Professional, business-ready appearance
 - Valid JSX syntax with proper JSON escaping
-- MANDATORY: All images must use placehold.co URLs with proper dimensions
-- EXPAND your creativity - add unique features that make the website special"""
+- MANDATORY: All images must use placehold.co URLs
+- Test layout on mobile, tablet, and desktop breakpoints"""
 
     async def _call_llm(self, instruction: str) -> str:
         """Call Azure OpenAI with the ultimate instruction"""
