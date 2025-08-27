@@ -78,22 +78,80 @@ class SimpleGeneratorService:
             main_ext = "jsx"
             config_files = ""
         
-        return f"""Create a modern multi-page React app for: {description}
+        return f"""Create a STUNNING, ultra-modern React app for: {description}
 
-REQUIREMENTS:
+DESIGN EXCELLENCE REQUIREMENTS:
 - Framework: {framework} with {language}
-- Build: 8+ files with real React Router navigation (not modals)
-- Style: Tailwind CSS only (no separate CSS files)
-- Pages: Create relevant pages (Home, About, Products, Contact, etc.)
-- Design: Modern, clean UI with gradients, shadows, responsive layout
-- Categories: Auto-generate relevant sections based on website type
+- Build: 10-15 files with seamless React Router navigation
+- Style: Advanced Tailwind CSS ONLY (glass morphism, animations, gradients)
+- Modern Color Schemes: Use vibrant gradients (purple-blue, emerald-cyan, rose-orange)
+- Animations: Smooth transitions, hover effects, fade-ins, parallax scrolling
+- Typography: Modern font combinations (Inter, Poppins, custom Google Fonts)
+
+CREATIVE FREEDOM & INTELLIGENCE:
+- ANALYZE the website type and CREATE relevant pages intelligently
+- For E-commerce: Home, Shop, Categories, Product Details, Cart, Checkout, Account, Wishlist
+- For Restaurant: Home, Menu, Reservations, About Chef, Gallery, Reviews, Contact, Catering
+- For Portfolio: Home, Projects, Skills, Experience, Blog, Testimonials, Contact, Resume
+- For Business: Home, Services, About, Team, Projects, Testimonials, Blog, Contact, Pricing
+- For Agency: Home, Services, Portfolio, About, Team, Process, Blog, Contact, Case Studies
+- For SaaS: Home, Features, Pricing, About, Blog, Support, Login, Dashboard Preview
+- CREATE 8-12 meaningful pages that make sense for the specific website type
+- ADD unique features and sections that enhance user experience
+- THINK beyond basic pages - add creative, relevant functionality
+
+IMAGE REQUIREMENTS - MANDATORY:
+- ALL images must use placehold.co URLs: https://placehold.co/WIDTHxHEIGHT
+- Examples: https://placehold.co/800x600, https://placehold.co/400x300, https://placehold.co/1200x800
+- NO internal image sources (./assets/, /images/, etc.)
+- Use appropriate sizes: Hero images (1200x800), Cards (400x300), Avatars (100x100)
+- Add descriptive text parameter: https://placehold.co/800x600?text=Hero+Image
+
+ULTRA-MODERN DESIGN STANDARDS:
+- Glass morphism effects (backdrop-blur-xl, bg-white/10)
+- Dynamic gradients (from-purple-600 via-pink-600 to-blue-600)
+- Floating elements with shadows (shadow-2xl, shadow-purple-500/25)
+- Micro-interactions on buttons and cards
+- Animated navigation with smooth transitions
+- Hero sections with video/gradient backgrounds
+- Card layouts with hover transforms (hover:scale-105, hover:-translate-y-2)
+- Modern spacing and clean layouts (not cramped default styling)
+
+ADVANCED ANIMATIONS & EFFECTS:
+- Page transitions between routes
+- Staggered animations for lists/cards
+- Parallax scrolling sections
+- Loading animations and skeleton screens
+- Interactive buttons with ripple effects
+- Smooth scroll behavior
+- Animated counters and progress bars
+- Floating action buttons
+
+COLOR PALETTE REQUIREMENTS:
+- Primary: Modern gradients (purple-pink-blue, emerald-teal, rose-orange)
+- Background: Dark mode friendly (slate-900, gray-900 with gradients)
+- Accent: Bright, vibrant colors (emerald-400, cyan-400, violet-400)
+- Text: High contrast (white on dark, dark on light)
+- NO basic colors like plain blue, red, or green
+
+CREATIVE COMPONENTS & FEATURES:
+- Interactive dashboards with charts/graphs
+- Image galleries with lightbox effects
+- Search and filter functionality
+- Modal dialogs for forms/details
+- Dropdown menus with animations
+- Progress indicators and timelines
+- Testimonial carousels
+- FAQ accordions with smooth animations
+- Newsletter signup with validation
+- Social media integration sections
 
 STRUCTURE:
-- Use React 18+ hooks, functional components
-- Implement BrowserRouter, Routes, Route, Link
-- Include navigation header/menu
-- Create reusable Layout component
-- Proper component hierarchy
+- React 18+ with advanced hooks (useIntersectionObserver, useAnimation)
+- React Router with smooth page transitions
+- Framer Motion or CSS animations for micro-interactions
+- Responsive breakpoints (mobile-first, tablet, desktop)
+- Modern component patterns (compound components, render props)
 
 OUTPUT FORMAT:
 Return ONLY valid JSON with properly escaped strings:
@@ -103,28 +161,32 @@ Return ONLY valid JSON with properly escaped strings:
   "language": "{language}",
   "description": "Brief description of what you built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router",
-    "index.html": "Main HTML file",
-    "vite.config.{file_ext.split('x')[0]}": "Vite config with server: {{host: true, cors: true, allowedHosts: true}}",
-    "tailwind.config.js": "Tailwind config",
-    "postcss.config.js": "PostCSS config",{config_files}
-    "src/main.{main_ext}": "React entry point",
-    "src/App.{main_ext}": "Main App with Router setup",
-    "src/index.css": "Global styles with Tailwind directives only",
-    "src/components/Layout.{main_ext}": "Layout with header/footer",
-    "src/components/Navigation.{main_ext}": "Navigation with routing links",
-    "src/pages/Home.{main_ext}": "Home page",
-    "src/pages/About.{main_ext}": "About page",
-    "src/pages/Products.{main_ext}": "Products page",
-    "src/pages/Contact.{main_ext}": "Contact page"
+    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router, Framer Motion",
+    "index.html": "HTML with Google Fonts and meta tags",
+    "vite.config.{file_ext.split('x')[0]}": "Vite config with server: {{host: true, cors: true, allowedHosts: true}} - KEEP allowedHosts as boolean true",
+    "tailwind.config.js": "Extended Tailwind config with custom animations and gradients",
+    "postcss.config.js": "PostCSS config for Tailwind",{config_files}
+    "src/main.{main_ext}": "React entry point with smooth scroll",
+    "src/App.{main_ext}": "Main App with animated Router transitions",
+    "src/index.css": "Global styles with Tailwind, custom animations, smooth scroll",
+    "src/components/Layout.{main_ext}": "Animated layout with glass morphism header/footer",
+    "src/components/Navigation.{main_ext}": "Modern nav with smooth transitions and active states",
+    "src/pages/Home.{main_ext}": "Hero section with gradients and animations",
+    "CREATE 8-12 MORE RELEVANT PAGES based on website type - BE CREATIVE AND INTELLIGENT"
   }}
 }}
 
-CRITICAL:
-- Valid JSX syntax, proper JSON escaping
-- Real component names, working code
-- Tailwind classes only, no CSS files
-- React Router navigation between pages"""
+CRITICAL RULES:
+- BE CREATIVE - Don't just create basic pages, think about what users really need
+- ANALYZE the website purpose and create relevant, meaningful pages
+- NO basic/default styling - everything must be visually stunning
+- Use advanced Tailwind utilities (backdrop-blur, transform, transition-all)
+- Implement smooth animations for ALL interactive elements
+- Create depth with shadows, gradients, and layering
+- Modern responsive design with proper breakpoints
+- Valid JSX syntax with proper JSON escaping
+- MANDATORY: All images must use placehold.co URLs with proper dimensions
+- EXPAND your creativity - add unique features that make the website special"""
 
     async def _call_llm(self, instruction: str) -> str:
         """Call Azure OpenAI with the ultimate instruction"""
