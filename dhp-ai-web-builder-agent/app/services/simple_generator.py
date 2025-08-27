@@ -129,6 +129,13 @@ MODERN DESIGN ELEMENTS:
 - Consistent rounded corners (rounded-lg, rounded-xl)
 - Proper whitespace and breathing room
 
+TECHNICAL REQUIREMENTS - CRITICAL:
+- Include ALL necessary dependencies in package.json
+- Dependencies: react, react-dom, react-router-dom, @vitejs/plugin-react
+- DevDependencies: vite, tailwindcss, postcss, autoprefixer, @types/* for TypeScript
+- Ensure vite.config includes React plugin import and usage
+- All generated code must work without additional installation steps
+
 RESPONSIVE DESIGN REQUIREMENTS:
 - Desktop optimization
 - Text scaling (text-sm, text-base, text-lg, text-xl)
@@ -150,9 +157,9 @@ Return ONLY valid JSON with properly escaped strings:
   "language": "{language}",
   "description": "Brief description of what you built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router",
+    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router, @vitejs/plugin-react, autoprefixer",
     "index.html": "HTML with proper meta tags and clean structure",
-    "vite.config.{file_ext.split('x')[0]}": "Vite config with server: {{host: true, cors: true, allowedHosts: true}} - KEEP allowedHosts as boolean true",
+    "vite.config.{file_ext.split('x')[0]}": "Vite config with React plugin and server: {{host: true, cors: true, allowedHosts: true}} - INCLUDE @vitejs/plugin-react",
     "tailwind.config.js": "Clean Tailwind config with consistent design tokens",
     "postcss.config.js": "PostCSS config for Tailwind",{config_files}
     "src/main.{main_ext}": "React entry point with clean setup",
