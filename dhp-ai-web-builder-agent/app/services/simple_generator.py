@@ -69,175 +69,62 @@ class SimpleGeneratorService:
         
         # Determine file extensions and imports based on language
         if language.lower() in ['typescript', 'ts']:
-            file_ext = "tsx" if "component" in description.lower() else "ts"
+            file_ext = "tsx"
             main_ext = "tsx"
-            import_type = "TypeScript with proper type definitions"
             config_files = '''
     "tsconfig.json": "{\\"compilerOptions\\": {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"], \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false, \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true, \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true, \\"noEmit\\": true, \\"jsx\\": \\"react-jsx\\"}, \\"include\\": [\\"src\\"], \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",'''
         else:
             file_ext = "jsx"
             main_ext = "jsx"
-            import_type = "Modern JavaScript with ES6+ features"
             config_files = ""
         
-        return f"""
-You are a world-class React developer creating MODERN, MULTI-PAGE applications with unlimited creative freedom.
+        return f"""Create a modern multi-page React app for: {description}
 
-USER REQUEST: {description}
-FRAMEWORK: {framework}
-LANGUAGE: {language}
+REQUIREMENTS:
+- Framework: {framework} with {language}
+- Build: 8+ files with real React Router navigation (not modals)
+- Style: Tailwind CSS only (no separate CSS files)
+- Pages: Create relevant pages (Home, About, Products, Contact, etc.)
+- Design: Modern, clean UI with gradients, shadows, responsive layout
+- Categories: Auto-generate relevant sections based on website type
 
-YOUR MISSION: Create a complete, modern, beautiful React application with MULTIPLE PAGES and real navigation.
+STRUCTURE:
+- Use React 18+ hooks, functional components
+- Implement BrowserRouter, Routes, Route, Link
+- Include navigation header/menu
+- Create reusable Layout component
+- Proper component hierarchy
 
-MANDATORY REQUIREMENTS:
-1. Create AT LEAST 8-12 files with MULTIPLE PAGES
-2. Implement REAL ROUTING (React Router) between pages - NO MODALS for navigation
-3. Build a modern, clean, sophisticated design
-4. Use Tailwind CSS for ALL styling (NO separate CSS files)
-5. Create realistic categories/sections relevant to the website type
-6. Include proper navigation menu/header with working links
-
-MULTI-PAGE NAVIGATION REQUIREMENTS:
-- Install and use React Router DOM for real page navigation
-- Create separate page components (Home, About, Products, Contact, etc.)
-- Implement working navigation between pages (not modals or tabs)
-- Include a navigation header/menu with clickable links
-- Each page should be a separate component with its own route
-- Use proper React Router patterns (BrowserRouter, Routes, Route, Link)
-
-SMART CATEGORIZATION REQUIREMENTS:
-- Analyze the website type and create relevant categories automatically
-- For e-commerce: Categories like Electronics, Clothing, Books, etc.
-- For restaurants: Categories like Appetizers, Main Courses, Desserts, etc. 
-- For portfolios: Categories like Projects, Skills, Experience, etc.
-- For blogs: Categories like Technology, Lifestyle, Travel, etc.
-- For business: Categories like Services, About Us, Team, Contact, etc.
-- Make categories meaningful and realistic for the specific website type
-
-MODERN DESIGN REQUIREMENTS:
-- Ultra-modern, clean, minimalist aesthetic
-- Use contemporary design patterns (glassmorphism, gradients, shadows)
-- Sophisticated color schemes and typography
-- Professional spacing and layout
-- Smooth animations and hover effects
-- Mobile-first responsive design
-- Use modern Tailwind utilities (backdrop-blur, shadow-xl, gradient backgrounds)
-- Contemporary UI elements (cards, hero sections, call-to-action buttons)
-
-STYLING REQUIREMENTS - TAILWIND ONLY:
-- Use Tailwind CSS for ALL styling
-- NO separate .css files for components  
-- Include Tailwind directives in src/index.css only
-- Use advanced Tailwind features (gradients, backdrop-blur, transforms)
-- Implement modern color palettes (slate, zinc, stone for neutrals)
-- Use sophisticated spacing and typography scales
-
-REACT-FOCUSED REQUIREMENTS:
-- Use React 18+ with modern hooks and patterns
-- Implement React Router for multi-page navigation
-- Use {language} with proper {import_type}
-- Create reusable layout components
-- Implement proper state management across pages
-- Use React best practices and modern patterns
-
-TECHNICAL SPECIFICATIONS:
-- Framework: React (mandatory)
-- Language: {language}
-- Build Tool: Vite (for fast development)
-- Styling: Tailwind CSS ONLY (no separate CSS files)
-- File Extensions: .{main_ext} for components
-
-CRITICAL SYNTAX RULES:
-- ALL JSX must be perfectly valid
-- NO unescaped quotes or special characters
-- Proper string escaping in JSON
-- Valid JavaScript/TypeScript syntax
-- No syntax errors whatsoever
-
-COMPONENT CREATION GUIDELINES:
-- Create specific, named components (not generic "ComponentName")
-- NO CSS files for components - use Tailwind classes only
-- Build a proper component hierarchy with MULTIPLE PAGES
-- Include at least 4-6 page components beyond App
-- Use meaningful file and component names
-- Create functional, interactive components with real routing
-
-DELIVERY FORMAT - CRITICAL:
-Return ONLY valid JSON. Use proper escaping for strings. Create REAL component names, not placeholders.
-
-Example structure (adapt to your specific website type):
+OUTPUT FORMAT:
+Return ONLY valid JSON with properly escaped strings:
 {{
-  "project_name": "descriptive-project-name",
-  "framework": "React",
+  "project_name": "descriptive-name",
+  "framework": "{framework}",
   "language": "{language}",
-  "description": "What you actually built",
+  "description": "Brief description of what you built",
   "files": {{
-    "package.json": "Complete package.json with React 18, Vite, Tailwind CSS, React Router DOM",
-    "index.html": "Main HTML file with title matching the project",
-    "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React, MUST add `server: {{host: true,cors: true,allowedHosts: true}}`",
-    "tailwind.config.js": "Tailwind CSS configuration file",
-    "postcss.config.js": "PostCSS configuration for Tailwind",{config_files}
-    "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
-    "src/App.{main_ext}": "Main App component with Router setup and Routes",
-    "src/index.css": "Global styles with Tailwind directives ONLY",
-    "src/components/Layout.{main_ext}": "Layout component with Header/Footer",
-    "src/components/Navigation.{main_ext}": "Navigation component with routing links", 
-    "src/pages/Home.{main_ext}": "Home page component",
-    "src/pages/About.{main_ext}": "About page component",
-    "src/pages/Products.{main_ext}": "Products/Services page component",
-    "src/pages/Contact.{main_ext}": "Contact page component"
-  }}
-}}
-    "tailwind.config.js": "Tailwind CSS configuration file",
-    "postcss.config.js": "PostCSS configuration for Tailwind",{config_files}
-    "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
-    "src/App.{main_ext}": "Main App component that uses other components",
-    "src/index.css": "Global styles with Tailwind directives ONLY",
-    "src/components/Header.{main_ext}": "Header component with Tailwind styling",
-    "src/components/MainContent.{main_ext}": "Main content component with Tailwind styling",
-    "src/components/Footer.{main_ext}": "Footer component with Tailwind styling"
+    "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router",
+    "index.html": "Main HTML file",
+    "vite.config.{file_ext.split('x')[0]}": "Vite config with server: {{host: true, cors: true, allowedHosts: true}}",
+    "tailwind.config.js": "Tailwind config",
+    "postcss.config.js": "PostCSS config",{config_files}
+    "src/main.{main_ext}": "React entry point",
+    "src/App.{main_ext}": "Main App with Router setup",
+    "src/index.css": "Global styles with Tailwind directives only",
+    "src/components/Layout.{main_ext}": "Layout with header/footer",
+    "src/components/Navigation.{main_ext}": "Navigation with routing links",
+    "src/pages/Home.{main_ext}": "Home page",
+    "src/pages/About.{main_ext}": "About page",
+    "src/pages/Products.{main_ext}": "Products page",
+    "src/pages/Contact.{main_ext}": "Contact page"
   }}
 }}
 
-CRITICAL JSON FORMATTING RULES:
-- Ensure ALL backslashes in file content are properly escaped
-- Ensure ALL quotes in file content are properly escaped
-- Each file content should be valid JSON string value
-- Do not include any text before or after the JSON object
-- Make sure the JSON is valid and parseable
-- NO syntax errors in any JavaScript/React code
-
-REACT COMPONENT GUIDELINES:
-- Use functional components with hooks
-- Include proper prop types or TypeScript interfaces
-- Use modern React patterns (useState, useEffect, custom hooks)
-- Create clean, readable, and well-organized code
-- Include proper imports and exports
-- Use semantic HTML and accessible components
-
-TAILWIND CSS GUIDELINES:
-- Use className with Tailwind utility classes
-- Responsive design with sm:, md:, lg:, xl: prefixes
-- Use Tailwind's color palette (bg-blue-500, text-gray-800, etc.)
-- Proper spacing with p-4, m-2, space-y-4, etc.
-- Flexbox and Grid with flex, grid, items-center, justify-between
-- Hover and focus states with hover:, focus: prefixes
-
-CRITICAL SYNTAX VALIDATION:
-- ALL JSX must be perfectly valid and well-formed
-- Proper quotes in JSX attributes (use double quotes consistently)
-- No unescaped special characters in strings
-- Valid JavaScript/TypeScript syntax throughout
-- Proper component imports and exports
-- No malformed HTML elements or attributes
-
-RESPONSE FORMAT - FINAL REQUIREMENTS:
-- Return ONLY valid JSON with proper escaping
-- No markdown, no explanations, just JSON
-- Create specific component names, not placeholders
-- Ensure every file contains syntactically correct code
-- Test all code for syntax errors before including
-"""
+CRITICAL:
+- Valid JSX syntax, proper JSON escaping
+- Real component names, working code
+- Tailwind classes only, no CSS files
+- React Router navigation between pages"""
 
     async def _call_llm(self, instruction: str) -> str:
         """Call Azure OpenAI with the ultimate instruction"""
