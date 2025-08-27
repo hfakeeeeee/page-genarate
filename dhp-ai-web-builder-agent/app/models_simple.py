@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 
 class SimpleGenerationRequest(BaseModel):
-    description: str = Field(..., description="Simple description of what you want to build")
+    description: str = Field(..., description="Simple description")
 
 
 class SimpleProjectResult(BaseModel):

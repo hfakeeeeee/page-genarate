@@ -13,7 +13,7 @@ class SimpleGenerationRequest(BaseModel):
     description: str = Field(..., description="Description of what you want to build")
     framework: str = Field(default="React", description="Frontend framework (React only)")
     language: ReactLanguage = Field(default=ReactLanguage.JAVASCRIPT, description="Programming language (JavaScript or TypeScript)")
-    
+
     class Config:
         use_enum_values = True
 
@@ -64,7 +64,7 @@ class ProjectInfo(BaseModel):
     language: str
     pages_count: int
     created_at: datetime
-    download_url: str
+    download_path: str
     size_mb: Optional[float] = None
 
 

@@ -20,20 +20,19 @@ generation_status: Dict[str, GenerationStatus] = {}
 
 @router.post("/generate", summary="Generate React project with AI")
 async def generate_project_freely(
-    request: SimpleGenerationRequest,
-    background_tasks: BackgroundTasks
+    request: SimpleGenerationRequest
 ):
     """
     Generate a complete React project with AI assistance.
-    
+
     The AI will create a full React application based on your description,
     using either JavaScript or TypeScript as specified.
-    
+
     Input:
     - description: What you want to build
     - framework: React (fixed)
     - language: JavaScript or TypeScript
-    
+
     The AI will handle:
     - Project structure and architecture
     - Component design and implementation
@@ -53,16 +52,10 @@ async def generate_project_freely(
     )
 
     # Start background generation
-    background_tasks.add_task(
-        generate_project_background,
-        generation_id,
-        request
-    )
+    response = await generate_project_background(generation_id, request)
+    print(response)
 
-    return {
-        "generation_id": generation_id, 
-        "message": f"AI is creating your React ({request.language}) project: {request.description}"
-    }
+    return response.project_info.__dict__
 
 
 @router.get("/status/{generation_id}", summary="Get generation status")
@@ -79,7 +72,7 @@ async def download_project(generation_id: str):
     """Download project as zip file"""
     if generation_id not in generation_status:
         raise HTTPException(status_code=404, detail="Generation not found")
-    
+
     status = generation_status[generation_id]
     if status.status != "completed" or not status.project_info:
         raise HTTPException(status_code=400, detail="Project not ready for download")
@@ -133,6 +126,7 @@ async def generate_project_background(generation_id: str, request: SimpleGenerat
         status.status = "failed"
         status.message = f"Generation failed: {str(e)}"
         status.error = str(e)
+    return status
 
 
 def update_progress(generation_id: str, progress: int, message: str):

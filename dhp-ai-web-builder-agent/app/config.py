@@ -15,6 +15,8 @@ class Settings:
     OUTPUT_PATH: str = os.getenv("OUTPUT_PATH")
     BASE_PROJECTS_PATH: str = os.getenv("BASE_PROJECTS_PATH")
     PROMPTS_PATH: str = os.getenv("PROMPTS_PATH")
+    SA_CONNECTION: str = os.getenv("SA_CONNECTION")
+    SA_SHARE_NAME: str = os.getenv("SA_SHARE_NAME")
 
     def __init__(self):
         # Ensure output directory exists

@@ -8,13 +8,14 @@ from pathlib import Path
 
 from ..config import settings
 from ..models import ProjectPlan, ProjectInfo, SimpleProjectResult
+from app.services.storage import StorageService
 
 
 class ProjectManagerService:
     def __init__(self):
         self.output_path = Path(settings.OUTPUT_PATH)
         self.base_projects_path = Path(settings.BASE_PROJECTS_PATH)
-
+        self.storage_service = StorageService()
         # Ensure output directories exist
         self.output_path.mkdir(exist_ok=True)
         (self.output_path / "projects").mkdir(exist_ok=True)
@@ -230,9 +231,10 @@ class ProjectManagerService:
 
         # Create zip file
         zip_path = await self._create_zip(project_dir, generation_id)
-
+        print("Created zip file:", zip_path)
         # Calculate size
         size_mb = round(os.path.getsize(zip_path) / (1024 * 1024), 2)
+        self.storage_service.upload_zip_file(zip_path)
 
         return ProjectInfo(
             id=generation_id,
@@ -241,7 +243,7 @@ class ProjectManagerService:
             language=project_result.language,
             pages_count=len([f for f in project_result.files.keys() if f.endswith(('.js', '.jsx', '.ts', '.tsx', '.vue'))]),
             created_at=datetime.now(),
-            download_url=f"/simple-generator/download/{generation_id}",
+            download_path=f"web-builder-projects/{generation_id}.zip",
             size_mb=size_mb
         )
 

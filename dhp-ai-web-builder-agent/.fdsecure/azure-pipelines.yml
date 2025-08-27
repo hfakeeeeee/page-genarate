@@ -72,10 +72,6 @@ variables:
 
 pool:
   name: 'Linux-NextGen'
-# The resources has the link for the templates
-# repository is the alias name for the repo/branch
-# name is the repository name
-# ref is branch name
 
 resources:
   repositories:

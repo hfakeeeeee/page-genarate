@@ -1,4 +1,4 @@
-host: ''
+host: 'dhp-ai-web-builder-agent-plat-dev.npii-aks.dhp-east2us-npe.humana.com'
 
 appName: dhp-ai-web-builder-agent
 
@@ -6,7 +6,7 @@ appServiceName: dhp-ai-web-builder-agent
 
 virtualAppName: dhp-ai-web-builder-agent
 
-gateway: ''
+gateway: 'istio-system/ingressgateway'
 
 replicaCount: 1
 

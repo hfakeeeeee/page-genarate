@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from .routers import hello_world, page_generator, simple_generator
+from .routers import page_generator, simple_generator, process
+from fastapi.middleware.cors import CORSMiddleware
 
 
 def create_app() -> FastAPI:
@@ -9,15 +10,18 @@ def create_app() -> FastAPI:
         version="1.0.0"
     )
 
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
     # Include routers
-    app.include_router(hello_world.router)
     app.include_router(page_generator.router)
     app.include_router(simple_generator.router)
-
-    @app.get("/healthcheck", summary="Healthcheck", tags=["healthcheck"])
-    def healthcheck():
-        return {"status": "OK", "service": "AI Web Builder"}
-
+    app.include_router(process.router)
     return app
 
 

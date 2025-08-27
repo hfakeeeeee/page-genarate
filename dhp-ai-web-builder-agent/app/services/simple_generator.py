@@ -1,4 +1,3 @@
-import os
 import json
 import logging
 from datetime import datetime
@@ -175,7 +174,7 @@ Example structure (adapt to your specific website type):
   "files": {{
     "package.json": "Complete package.json with React 18, Vite, Tailwind CSS, React Router DOM",
     "index.html": "Main HTML file with title matching the project",
-    "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React",
+    "vite.config.{file_ext.split('x')[0]}": "Vite configuration for React, MUST add `server: {{host: true,cors: true,allowedHosts: true}}`",
     "tailwind.config.js": "Tailwind CSS configuration file",
     "postcss.config.js": "PostCSS configuration for Tailwind",{config_files}
     "src/main.{main_ext}": "React app entry point with ReactDOM.createRoot",
@@ -258,8 +257,7 @@ RESPONSE FORMAT - FINAL REQUIREMENTS:
                         "content": instruction
                     }
                 ],
-                timeout=600,
-                temperature=0.8,  # Higher temperature for more creativity
+                timeout=600
             )
 
             elapsed_time = (datetime.now() - start_time).total_seconds()
