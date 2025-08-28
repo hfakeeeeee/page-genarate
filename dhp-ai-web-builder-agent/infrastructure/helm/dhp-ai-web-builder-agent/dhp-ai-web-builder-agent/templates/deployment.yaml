@@ -1,0 +1,37 @@
+{{- $appName := .Values.appName -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.image.name }}
+          image: {{ .Values.image.jfrog_artifactory }}/{{ .Values.appName }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          envFrom:
+            - configMapRef:
+                name: config-map-{{ .Values.appName }}
+            - secretRef:
+                name: secret-{{ .Values.appName }}
+
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecret }}
