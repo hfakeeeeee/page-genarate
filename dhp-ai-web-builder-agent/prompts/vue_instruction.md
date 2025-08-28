@@ -27,11 +27,13 @@ CLEAN LAYOUT STANDARDS - CRITICAL:
 - Consistent card sizes and spacing
 - Proper text alignment and hierarchy
 
-CREATIVE FREEDOM & INTELLIGENCE:
-- ANALYZE the website type and CREATE relevant pages intelligently
-- CREATE 8-12 meaningful pages that make sense for the specific website type
-- ADD unique features and sections that enhance user experience
-- THINK beyond basic pages - add creative, relevant functionality
+CREATIVE FREEDOM & INTELLIGENCE - SMART ADAPTATION:
+- ANALYZE the user's instructions for complexity indicators
+- IF user mentions "simple", "basic", "minimal", "just a few pages", "only need", "quick", "starter": CREATE 3-5 essential pages only
+- IF user mentions "full", "complete", "comprehensive", "advanced", "complex", "business": CREATE 8-12 detailed pages
+- IF no complexity indicators: CREATE 5-7 moderate pages that make sense for the website type
+- ALWAYS match the complexity to user expectations
+- ADD unique features and sections that enhance user experience within the requested scope
 
 IMAGE REQUIREMENTS - MANDATORY:
 - ALL images must use placehold.co URLs: https://placehold.co/WIDTHxHEIGHT
@@ -98,7 +100,7 @@ Return ONLY valid JSON with properly escaped strings:
     "src/components/Layout.vue": "Consistent layout component with header/footer",
     "src/components/Navigation.vue": "Clean navigation component with consistent styling",
     "src/pages/Home.vue": "Clean hero section with professional design",
-    "CREATE 8-12 MORE RELEVANT PAGES based on website type - MAINTAIN LAYOUT CONSISTENCY"
+    "CREATE PAGES BASED ON COMPLEXITY: Simple/Basic (3-5 pages) | Moderate (5-7 pages) | Full/Complete (8-12 pages) - MAINTAIN LAYOUT CONSISTENCY"
   }}
 }}
 
@@ -110,8 +112,9 @@ VUE COMPONENT STRUCTURE:
 - Use proper Vue directives and syntax
 
 CRITICAL RULES:
-- BE CREATIVE - Don't just create basic pages, think about what users really need
+- BE ADAPTIVE - Match complexity to user's request (simple = fewer pages, full = more pages)
 - ANALYZE the website purpose and create relevant, meaningful pages
+- RESPECT user's complexity preference: simple/basic/minimal = 3-5 pages, full/complete = 8-12 pages
 - CLEAN and MODERN over colorful and flashy
 - CONSISTENT layout and spacing across ALL pages
 - ONE accent color maximum, rest neutral
