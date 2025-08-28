@@ -1,8 +1,0 @@
-fastapi
-uvicorn[standard]
-openai
-pydantic
-jinja2
-python-dotenv
-aiofiles
-azure-storage-file-share==12.22.0
