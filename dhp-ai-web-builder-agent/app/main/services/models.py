@@ -11,7 +11,7 @@ class ReactLanguage(str, Enum):
 
 class SimpleGenerationRequest(BaseModel):
     instructions: str = Field(..., description="Description of what you want to build")
-    framework: str = Field(default="React", description="Frontend framework (React only)")
+    framework: str = Field(default="React", description="Frontend framework (React or Vue)")
     language: ReactLanguage = Field(default=ReactLanguage.JAVASCRIPT, description="Programming language (JS or TS)")
 
     class Config:

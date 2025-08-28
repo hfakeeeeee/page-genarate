@@ -18,26 +18,26 @@ project_manager = ProjectManagerService()
 generation_status: Dict[str, GenerationStatus] = {}
 
 
-@router.post("/generate", summary="Generate React project with AI")
+@router.post("/generate", summary="Generate React or Vue project with AI")
 async def generate_project_freely(
     request: SimpleGenerationRequest
 ):
     """
-    Generate a complete React project with AI assistance.
+    Generate a complete React or Vue project with AI assistance.
 
-    The AI will create a full React application based on your instructions,
+    The AI will create a full web application based on your instructions,
     using either JavaScript or TypeScript as specified.
 
     Input:
     - instructions: What you want to build
-    - framework: React (fixed)
+    - framework: React or Vue
     - language: JavaScript or TypeScript
 
     The AI will handle:
     - Project structure and architecture
     - Component design and implementation
     - Styling and responsive design
-    - Modern React patterns and best practices
+    - Modern framework patterns and best practices
     - Complete working application with all necessary files
     """
     generation_id = f"simple_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -47,7 +47,7 @@ async def generate_project_freely(
         id=generation_id,
         status="starting",
         progress=0,
-        message=f"AI is preparing to create your React ({request.language}) project...",
+        message=f"AI is preparing to create your {request.framework} ({request.language}) project...",
         created_at=datetime.now()
     )
 
@@ -96,7 +96,7 @@ async def generate_project_background(generation_id: str, request: SimpleGenerat
         # Update status
         status.status = "generating"
         status.progress = 50
-        status.message = f"AI is designing and building your React ({request.language}) project..."
+        status.message = f"AI is designing and building your {request.framework} ({request.language}) project..."
 
         # Generate complete project with AI freedom
         project_result = await simple_generator.generate_complete_project(

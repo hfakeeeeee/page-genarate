@@ -121,11 +121,18 @@ Return ONLY valid JSON with properly escaped strings:
         Create framework-specific instruction by loading from template file.
         """
 
-        # Determine file extensions and imports based on language
+        # Determine file extensions and imports based on language and framework
         if language.lower() in ['typescript', 'ts']:
             file_ext = "ts"
-            main_ext = "tsx"
-            config_files = '''
+            if framework.lower() == 'vue':
+                main_ext = "ts"  # Vue uses .ts for TypeScript, not .tsx
+                config_files = '''
+    "tsconfig.json": "{\\"compilerOptions\\": {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"], \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false, \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true, \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true, \\"noEmit\\": true, \\"jsx\\": \\"preserve\\"}, \\"include\\": [\\"src/**/*.ts\\", \\"src/**/*.d.ts\\", \\"src/**/*.tsx\\", \\"src/**/*.vue\\"], \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",
+    "tsconfig.node.json": "{\\"compilerOptions\\": {\\"composite\\": true, \\"skipLibCheck\\": true, \\"module\\": \\"ESNext\\", \\"moduleResolution\\": \\"bundler\\", \\"allowSyntheticDefaultImports\\": true}, \\"include\\": [\\"vite.config.ts\\"]}",
+    "src/vite-env.d.ts": "/// <reference types=\\"vite/client\\" />",'''
+            else:
+                main_ext = "tsx"  # React uses .tsx for TypeScript
+                config_files = '''
     "tsconfig.json": "{\\"compilerOptions\\":
     {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"],
     \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false,
@@ -135,7 +142,10 @@ Return ONLY valid JSON with properly escaped strings:
     \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",'''
         else:
             file_ext = "js"
-            main_ext = "jsx"
+            if framework.lower() == 'vue':
+                main_ext = "js"  # Vue uses .js for JavaScript
+            else:
+                main_ext = "jsx"  # React uses .jsx for JavaScript
             config_files = ""
 
         # Load the instruction template
