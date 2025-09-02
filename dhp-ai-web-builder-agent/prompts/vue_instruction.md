@@ -1,4 +1,4 @@
-Create a STUNNING, ultra-modern Vue app for:   "description": "Brief description of what you built",
+Create a STUNNING, ultra-modern Vue app for: {instructions}
 
 DESIGN EXCELLENCE REQUIREMENTS:
 - Framework: {framework} with {language}
@@ -27,13 +27,11 @@ CLEAN LAYOUT STANDARDS - CRITICAL:
 - Consistent card sizes and spacing
 - Proper text alignment and hierarchy
 
-CREATIVE FREEDOM & INTELLIGENCE - SMART ADAPTATION:
-- ANALYZE the user's instructions for complexity indicators
-- IF user mentions "simple", "basic", "minimal", "just a few pages", "only need", "quick", "starter": CREATE 3-5 essential pages only
-- IF user mentions "full", "complete", "comprehensive", "advanced", "complex", "business": CREATE 8-12 detailed pages
-- IF no complexity indicators: CREATE 5-7 moderate pages that make sense for the website type
-- ALWAYS match the complexity to user expectations
-- ADD unique features and sections that enhance user experience within the requested scope
+CREATIVE FREEDOM & INTELLIGENCE:
+- ANALYZE the website type and CREATE relevant pages intelligently
+- CREATE 8-12 meaningful pages that make sense for the specific website type
+- ADD unique features and sections that enhance user experience
+- THINK beyond basic pages - add creative, relevant functionality
 
 IMAGE REQUIREMENTS - MANDATORY:
 - ALL images must use placehold.co URLs: https://placehold.co/WIDTHxHEIGHT
@@ -53,9 +51,9 @@ MODERN DESIGN ELEMENTS:
 
 TECHNICAL REQUIREMENTS - CRITICAL:
 - Include ALL necessary dependencies in package.json
-- Dependencies: vue, vue-router, @tailwindcss/vite, tailwindcss
-- DevDependencies: vite, @vitejs/plugin-vue, typescript (for TS), vue-tsc (for TS), @vue/tsconfig (for TS)
-- Ensure vite.config includes Vue plugin and Tailwind plugin
+- Dependencies: vue, vue-router, @vitejs/plugin-vue
+- DevDependencies: vite, tailwindcss, postcss, autoprefixer, @types/* (for TypeScript), vue-tsc (for TypeScript)
+- Ensure vite.config includes Vue plugin import and usage
 - All generated code must work without additional installation steps
 
 VUE-SPECIFIC REQUIREMENTS:
@@ -87,20 +85,20 @@ Return ONLY valid JSON with properly escaped strings:
   "project_name": "descriptive-name",
   "framework": "{framework}",
   "language": "{language}",
-  "description": "Brief description of what you built",
+  "instructions": "Brief instruction of what you built",
   "files": {{
-    "package.json": "Complete package.json with Vue 3, Vite, Tailwind, Vue Router, @vitejs/plugin-vue, @tailwindcss/vite",
-    "index.html": "HTML with proper meta tags and clean structure",
-    "vite.config.{file_ext}": "Vite config with Vue plugin and Tailwind: {{plugins: [vue(), tailwindcss()], server: {{host: true, cors: true}}}}",
-    "tailwind.config.js": "Clean Tailwind config with consistent design tokens",{config_files}
-    "src/main.{file_ext}": "Vue entry point with router setup",
+    "package.json": "Complete package.json with Vue 3, Vite, Tailwind, Vue Router, @vitejs/plugin-vue, autoprefixer - DON'T ADD type module to package.json, ensure must have scripts to start dev server",
+    "index.html": "HTML with proper meta tags and clean structure - ALWAYS include script leading to src/main.{main_ext} in index.html",
+    "vite.config.{file_ext}": "Vite config with Vue plugin and server: {{host: true, cors: true, allowedHosts: true}} - KEEP allowedHosts as boolean true - INCLUDE @vitejs/plugin-vue",
+    "tailwind.config.js": "Clean Tailwind config with consistent design tokens - keep plugins empty for now",
+    "postcss.config.js": "PostCSS config for Tailwind",{config_files}
+    "src/main.{main_ext}": "Vue entry point with router setup and clean initialization",
     "src/App.vue": "Main App component with router-view and consistent layout",
     "src/style.css": "Global styles with Tailwind, clean base styles",
-    "src/router/index.{file_ext}": "Vue Router configuration with all routes",
+    "src/router/index.{main_ext}": "Vue Router configuration with all routes",
     "src/components/Layout.vue": "Consistent layout component with header/footer",
     "src/components/Navigation.vue": "Clean navigation component with consistent styling",
-    "src/pages/Home.vue": "Clean hero section with professional design",
-    "CREATE PAGES BASED ON COMPLEXITY: Simple/Basic (3-5 pages) | Moderate (5-7 pages) | Full/Complete (8-12 pages) - MAINTAIN LAYOUT CONSISTENCY"
+    "src/pages/Home.vue": "Clean hero section with professional design"
   }}
 }}
 
@@ -112,9 +110,7 @@ VUE COMPONENT STRUCTURE:
 - Use proper Vue directives and syntax
 
 CRITICAL RULES:
-- BE ADAPTIVE - Match complexity to user's request (simple = fewer pages, full = more pages)
 - ANALYZE the website purpose and create relevant, meaningful pages
-- RESPECT user's complexity preference: simple/basic/minimal = 3-5 pages, full/complete = 8-12 pages
 - CLEAN and MODERN over colorful and flashy
 - CONSISTENT layout and spacing across ALL pages
 - ONE accent color maximum, rest neutral
