@@ -60,12 +60,15 @@ TECHNICAL REQUIREMENTS - CRITICAL:
 
 VUE-SPECIFIC REQUIREMENTS:
 - Use Vue 3 Composition API with `<script setup>` syntax
-- Implement proper Vue Router 4 navigation
+- Implement proper Vue Router 4 navigation with lazy loading
 - Use Vue 3 reactive features (ref, reactive, computed, watch)
 - Follow Vue 3 best practices and patterns
 - Use Single File Components (.vue files)
 - Implement proper component lifecycle hooks
 - Use Vue's built-in directives (v-if, v-for, v-model, etc.)
+- CRITICAL: Avoid complex transitions and animations that cause routing issues
+- Use simple CSS transitions instead of Vue transition components
+- Ensure all components are properly registered and imported
 
 RESPONSIVE DESIGN REQUIREMENTS:
 - Desktop optimization
@@ -97,9 +100,9 @@ Return ONLY valid JSON with properly escaped strings:
     "src/main.{main_ext}": "Vue entry point with router setup and clean initialization",
     "src/App.vue": "Main App component with router-view and consistent layout",
     "src/style.css": "Global styles with Tailwind, clean base styles",
-    "src/router/index.{main_ext}": "Vue Router configuration with all routes",
-    "src/components/Layout.vue": "Consistent layout component with header/footer",
-    "src/components/Navigation.vue": "Clean navigation component with consistent styling",
+    "src/router/index.{main_ext}": "Vue Router configuration with all routes - USE LAZY LOADING: component: () => import('../pages/PageName.vue')",
+    "src/components/Layout.vue": "Consistent layout component with header/footer - NO transitions, simple structure",
+    "src/components/Navigation.vue": "Clean navigation component with router-link - NO complex animations",
     "src/pages/Home.vue": "Clean hero section with professional design",
     "CREATE PAGES BASED ON COMPLEXITY: Simple/Basic (3-5 pages) | Moderate (5-7 pages) | Full/Complete (8-12 pages) - MAINTAIN LAYOUT CONSISTENCY"
   }}
@@ -111,6 +114,11 @@ VUE COMPONENT STRUCTURE:
 - Use Vue 3 Composition API patterns
 - Follow Vue naming conventions (PascalCase for components)
 - Use proper Vue directives and syntax
+- CRITICAL: Avoid Vue transition components (Transition, TransitionGroup)
+- Use CSS transitions and transforms instead of Vue transitions
+- Ensure proper component imports and registration
+- Use router-link for navigation, not manual route changes
+- Implement proper error boundaries and loading states
 
 CRITICAL RULES:
 - BE ADAPTIVE - Match complexity to user's request (simple = fewer pages, full = more pages)
@@ -126,3 +134,7 @@ CRITICAL RULES:
 - Use `<script setup>` syntax for all components
 - Implement proper Vue Router navigation
 - Test layout on mobile, tablet, and desktop breakpoints
+- CRITICAL: NO Vue transition components - use CSS transitions only
+- Use router-link for all navigation
+- Implement lazy loading for all route components
+- Ensure all components are properly imported and registered
