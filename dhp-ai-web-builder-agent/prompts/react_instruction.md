@@ -9,12 +9,14 @@ DESIGN EXCELLENCE REQUIREMENTS:
 - Typography: Clean, readable fonts (Inter, system fonts)
 
 MODERN CLEAN COLOR PALETTE - MANDATORY:
-- Primary: Neutral color with ONE subtle accent color
-- Background: Clean color
-- Dark mode: Deep color not black (slate-900, gray-900, zinc-900)
-- Text: High contrast but not harsh 
-- AVOID: Multiple bright colors, rainbow gradients, too many accent colors
-- USE: Monochromatic schemes with subtle color variations
+- Primary: Choose ONE sophisticated color scheme from: Blue (slate/sky), Green (emerald/teal), Purple (violet/indigo), Orange (amber/orange), Red (rose/red), Gray (neutral/stone), or Warm (yellow/amber)
+- Background: Clean whites, light grays, or subtle warm tones
+- Dark mode: Deep colors not pure black (slate-900, gray-900, zinc-900, emerald-900, violet-900)
+- Text: High contrast but not harsh (gray-900, slate-800, zinc-700)
+- Accent: ONE complementary color that enhances the primary scheme
+- AVOID: Multiple bright colors, rainbow gradients, neon colors, too many accent colors
+- USE: Monochromatic schemes with subtle color variations and professional tone
+- EXAMPLES: Emerald-based (emerald-600, emerald-50, emerald-900), Violet-based (violet-600, violet-50, violet-900), Amber-based (amber-600, amber-50, amber-900)
 
 CLEAN LAYOUT STANDARDS - CRITICAL:
 - Consistent spacing system (use p-4, p-6, p-8, p-12 systematically)
@@ -44,12 +46,13 @@ IMAGE REQUIREMENTS - MANDATORY:
 
 MODERN DESIGN ELEMENTS:
 - Subtle shadows (shadow-sm, shadow-md, shadow-lg - NOT shadow-2xl)
-- Clean borders (border-gray-200, border-slate-300)
-- Minimal use of gradients (only for subtle backgrounds)
-- Glass morphism effects used sparingly
-- Clean button designs with proper padding
+- Clean borders using chosen color scheme (border-gray-200, border-emerald-200, border-violet-200, etc.)
+- Minimal use of gradients (only for subtle backgrounds using primary color)
+- Glass morphism effects used sparingly with chosen color theme
+- Clean button designs with proper padding and primary color scheme
 - Consistent rounded corners (rounded-lg, rounded-xl)
 - Proper whitespace and breathing room
+- Color-coordinated hover states and interactive elements
 
 TECHNICAL REQUIREMENTS - CRITICAL:
 - Include ALL necessary dependencies in package.json
@@ -82,7 +85,7 @@ Return ONLY valid JSON with properly escaped strings:
     "package.json": "Complete package.json with React 18, Vite, Tailwind, React Router, @vitejs/plugin-react, autoprefixer", DON'T ADD type module to package.json, ensure must have scripts to start dev server,
     "index.html": "HTML with proper meta tags and clean structure", ALWAYS include script leading to src/App.{main_ext} in index.html",
     "vite.config.{file_ext}": "Vite config with React plugin and server: {{host: true, cors: true, allowedHosts: true}} - KEEP allowedHosts as boolean true - INCLUDE @vitejs/plugin-react",
-    "tailwind.config.js": "Clean Tailwind config with consistent design tokens", keep plugins empty for now,
+    "tailwind.config.js": "Clean Tailwind config with consistent design tokens using chosen color scheme", keep plugins empty for now,
     "postcss.config.js": "PostCSS config for Tailwind",{config_files}
     "src/main.{main_ext}": "React entry point with clean setup",
     "src/App.{main_ext}": "Main App with consistent Router structure",
@@ -98,9 +101,10 @@ CRITICAL RULES:
 - BE ADAPTIVE - Match complexity to user's request (simple = fewer pages, full = more pages)
 - ANALYZE the website purpose and create relevant, meaningful pages
 - RESPECT user's complexity preference: simple/basic/minimal = 3-5 pages, full/complete = 8-12 pages
+- CHOOSE ONE sophisticated color scheme and use it consistently throughout
 - CLEAN and MODERN over colorful and flashy
 - CONSISTENT layout and spacing across ALL pages
-- ONE accent color maximum, rest neutral
+- ONE primary color scheme with maximum one accent color
 - Proper responsive design that never breaks
 - Professional, business-ready appearance
 - Valid JSX syntax with proper JSON escaping
