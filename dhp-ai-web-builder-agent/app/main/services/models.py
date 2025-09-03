@@ -8,6 +8,7 @@ class SimpleGenerationRequest(BaseModel):
     instructions: str = Field(..., description="Description of what you want to build")
     framework: str = Field(default="React", description="Frontend framework (React or Vue)")
     language: str = Field(default="JavaScript", description="Programming language (JS or TS)")
+    styling: str = Field(default="tailwind", description="Styling framework (tailwind or nucleus)")
 
     class Config:
         use_enum_values = True

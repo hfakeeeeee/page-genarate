@@ -32,11 +32,12 @@ async def generate_project_freely(
     - instructions: What you want to build
     - framework: React or Vue
     - language: JavaScript or TypeScript
+    - styling: tailwind or nucleus
 
     The AI will handle:
     - Project structure and architecture
     - Component design and implementation
-    - Styling and responsive design
+    - Styling and responsive design (Tailwind CSS or Nucleus CSS)
     - Modern framework patterns and best practices
     - Complete working application with all necessary files
     """
@@ -47,7 +48,7 @@ async def generate_project_freely(
         id=generation_id,
         status="starting",
         progress=0,
-        message=f"AI is preparing to create your {request.framework} ({request.language}) project...",
+        message=f"AI is preparing to create your {request.framework} ({request.language}) project with {request.styling} styling...",
         created_at=datetime.now()
     )
 
@@ -96,13 +97,14 @@ async def generate_project_background(generation_id: str, request: SimpleGenerat
         # Update status
         status.status = "generating"
         status.progress = 50
-        status.message = f"AI is designing and building your {request.framework} ({request.language}) project..."
+        status.message = f"AI is designing and building your {request.framework} ({request.language}) project with {request.styling} styling..."
 
         # Generate complete project with AI freedom
         project_result = await simple_generator.generate_complete_project(
             request.instructions,
             request.framework,
             request.language,
+            request.styling,
             progress_callback=lambda p, m: update_progress(generation_id, p, m)
         )
 

@@ -29,20 +29,36 @@ class SimpleGeneratorService:
         self.base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
         self.prompts_dir = os.path.join(self.base_dir, 'prompts')
 
-    def _load_instruction_template(self, framework: str) -> str:
+    def _load_instruction_template(self, framework: str, styling: str = "tailwind") -> str:
         """
-        Load instruction template for the specified framework.
-        Falls back to react if framework-specific template doesn't exist.
+        Load instruction template for the specified framework and styling.
+        Falls back to react tailwind if framework-specific template doesn't exist.
         """
         framework_lower = framework.lower()
-        template_file = f"{framework_lower}_instruction.md"
+        styling_lower = styling.lower()
+        
+        # Determine template file based on styling
+        if styling_lower == "nucleus":
+            template_file = f"{framework_lower}_nucleus_instruction.md"
+        else:
+            # Default to tailwind (existing templates)
+            template_file = f"{framework_lower}_instruction.md"
+            
         template_path = os.path.join(self.prompts_dir, template_file)
         print(template_path)
 
         # If framework-specific template doesn't exist, use react as default
         if not os.path.exists(template_path):
-            template_path = os.path.join(self.prompts_dir, 'react_instruction.md')
-            self.logger.warning(f"No template found for {framework}, using React template as fallback")
+            if styling_lower == "nucleus":
+                # Try to fall back to react nucleus template
+                template_path = os.path.join(self.prompts_dir, 'react_nucleus_instruction.md')
+                if not os.path.exists(template_path):
+                    # If nucleus template doesn't exist, fall back to regular react template
+                    template_path = os.path.join(self.prompts_dir, 'react_instruction.md')
+                    self.logger.warning(f"No nucleus template found for {framework}, using React tailwind template as fallback")
+            else:
+                template_path = os.path.join(self.prompts_dir, 'react_instruction.md')
+                self.logger.warning(f"No template found for {framework}, using React template as fallback")
 
         try:
             with open(template_path, 'r', encoding='utf-8') as file:
@@ -83,6 +99,7 @@ Return ONLY valid JSON with properly escaped strings:
         instructions: str,
         framework: str = "React",
         language: str = "JavaScript",
+        styling: str = "tailwind",
         progress_callback: Optional[Callable[[int, str], None]] = None
     ) -> SimpleProjectResult:
         """
@@ -93,11 +110,11 @@ Return ONLY valid JSON with properly escaped strings:
             if progress_callback:
                 progress_callback(10, "AI is analyzing your request...")
 
-            # Create instruction with specific framework and language
-            ultimate_instruction = self._create_ultimate_instruction(instructions, framework, language)
+            # Create instruction with specific framework, language, and styling
+            ultimate_instruction = self._create_ultimate_instruction(instructions, framework, language, styling)
 
             if progress_callback:
-                progress_callback(30, f"AI is designing the complete {framework} ({language}) solution...")
+                progress_callback(30, f"AI is designing the complete {framework} ({language}) solution with {styling} styling...")
 
             # Single AI call to generate everything
             response = await self._call_llm(ultimate_instruction)
@@ -116,7 +133,7 @@ Return ONLY valid JSON with properly escaped strings:
         except Exception as e:
             self.logger.error(f"Failed to generate project: {str(e)}")
 
-    def _create_ultimate_instruction(self, instructions: str, framework: str, language: str) -> str:
+    def _create_ultimate_instruction(self, instructions: str, framework: str, language: str, styling: str = "tailwind") -> str:
         """
         Create framework-specific instruction by loading from template file.
         """
@@ -127,8 +144,16 @@ Return ONLY valid JSON with properly escaped strings:
             if framework.lower() == 'vue':
                 main_ext = "ts"  # Vue uses .ts for TypeScript, not .tsx
                 config_files = '''
-    "tsconfig.json": "{\\"compilerOptions\\": {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"], \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false, \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true, \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true, \\"noEmit\\": true, \\"jsx\\": \\"preserve\\"}, \\"include\\": [\\"src/**/*.ts\\", \\"src/**/*.d.ts\\", \\"src/**/*.tsx\\", \\"src/**/*.vue\\"], \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",
-    "tsconfig.node.json": "{\\"compilerOptions\\": {\\"composite\\": true, \\"skipLibCheck\\": true, \\"module\\": \\"ESNext\\", \\"moduleResolution\\": \\"bundler\\", \\"allowSyntheticDefaultImports\\": true}, \\"include\\": [\\"vite.config.ts\\"]}",
+    "tsconfig.json": "{\\"compilerOptions\\":
+    {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"],
+    \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false,
+    \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true,
+    \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true,
+    \\"noEmit\\": true, \\"jsx\\": \\"preserve\\"}, \\"include\\": [\\"src/**/*.ts\\",
+    \\"src/**/*.d.ts\\", \\"src/**/*.tsx\\", \\"src/**/*.vue\\"], \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",
+    "tsconfig.node.json": "{\\"compilerOptions\\": {\\"composite\\": true, \\"skipLibCheck\\": true,
+    \\"module\\": \\"ESNext\\", \\"moduleResolution\\": \\"bundler\\", \\"allowSyntheticDefaultImports\\": true},
+    \\"include\\": [\\"vite.config.ts\\"]}",
     "src/vite-env.d.ts": "/// <reference types=\\"vite/client\\" />",'''
             else:
                 main_ext = "tsx"  # React uses .tsx for TypeScript
@@ -147,8 +172,8 @@ Return ONLY valid JSON with properly escaped strings:
                 main_ext = "jsx"  # React uses .jsx for JavaScript
             config_files = ""
 
-        # Load the instruction template
-        template = self._load_instruction_template(framework)
+        # Load the instruction template with styling parameter
+        template = self._load_instruction_template(framework, styling)
 
         # Format the template with the provided variables
         try:
@@ -156,6 +181,7 @@ Return ONLY valid JSON with properly escaped strings:
                 instructions=instructions,
                 framework=framework,
                 language=language,
+                styling=styling,
                 file_ext=file_ext,
                 main_ext=main_ext,
                 config_files=config_files
@@ -165,7 +191,7 @@ Return ONLY valid JSON with properly escaped strings:
             self.logger.error(f"Template formatting error - missing variable: {str(e)}")
             # Return template with basic substitution
             return template.replace("{instructions}", instructions).replace("{framework}",
-                                                                            framework).replace("{language}", language)
+                                                                            framework).replace("{language}", language).replace("{styling}", styling)
 
     async def _call_llm(self, instruction: str) -> str:
         """Call Azure OpenAI with the ultimate instruction"""
