@@ -138,8 +138,7 @@ Return ONLY valid JSON with properly escaped strings:
     \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false,
     \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true,
     \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true,
-    \\"noEmit\\": true, \\"jsx\\": \\"react-jsx\\"}, \\"include\\": [\\"src\\"],
-    \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",'''
+    \\"noEmit\\": true, \\"jsx\\": \\"react-jsx\\"}, \\"include\\": [\\"src\\"]},'''
         else:
             file_ext = "js"
             if framework.lower() == 'vue':
