@@ -105,6 +105,7 @@ async def generate_project_background(generation_id: str, request: SimpleGenerat
             request.framework,
             request.language,
             request.styling,
+            request.projectName,  # Pass user-provided project name
             progress_callback=lambda p, m: update_progress(generation_id, p, m)
         )
 

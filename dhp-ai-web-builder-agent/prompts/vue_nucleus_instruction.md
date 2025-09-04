@@ -141,7 +141,7 @@ STRUCTURE:
 OUTPUT FORMAT:
 Return ONLY valid JSON with properly escaped strings:
 {{
-  "project_name": "descriptive-name",
+  "project_name": "{project_name}",
   "framework": "{framework}",
   "language": "{language}",
   "instructions": "Brief instruction of what you built",

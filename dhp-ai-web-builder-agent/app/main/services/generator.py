@@ -77,6 +77,7 @@ class SimpleGeneratorService:
 
 REQUIREMENTS:
 - Framework: {framework} with {language}
+- Project Name: {project_name}
 - Build: 8+ files with proper navigation
 - Style: Modern, clean design
 - Responsive: Mobile-first approach
@@ -84,7 +85,7 @@ REQUIREMENTS:
 OUTPUT FORMAT:
 Return ONLY valid JSON with properly escaped strings:
 {{
-  "project_name": "descriptive-name",
+  "project_name": "{project_name}",
   "framework": "{framework}",
   "language": "{language}",
   "instructions": "Brief instructions for the project",
@@ -100,6 +101,7 @@ Return ONLY valid JSON with properly escaped strings:
         framework: str = "React",
         language: str = "JavaScript",
         styling: str = "TailwindCSS",
+        project_name: str = "AI Generated Project",
         progress_callback: Optional[Callable[[int, str], None]] = None
     ) -> SimpleProjectResult:
         """
@@ -111,7 +113,7 @@ Return ONLY valid JSON with properly escaped strings:
                 progress_callback(10, "AI is analyzing your request...")
 
             # Create instruction with specific framework, language, and styling
-            ultimate_instruction = self._create_ultimate_instruction(instructions, framework, language, styling)
+            ultimate_instruction = self._create_ultimate_instruction(instructions, framework, language, styling, project_name)
 
             if progress_callback:
                 progress_callback(30, f"AI is designing the complete solution with {styling} styling...")
@@ -123,7 +125,7 @@ Return ONLY valid JSON with properly escaped strings:
                 progress_callback(70, "AI is finalizing the project...")
 
             # Parse the AI's complete response
-            project_result = self._parse_project_response(response)
+            project_result = self._parse_project_response(response, project_name)
 
             if progress_callback:
                 progress_callback(90, "Project ready!")
@@ -133,7 +135,7 @@ Return ONLY valid JSON with properly escaped strings:
         except Exception as e:
             self.logger.error(f"Failed to generate project: {str(e)}")
 
-    def _create_ultimate_instruction(self, instructions: str, framework: str, language: str, styling: str) -> str:
+    def _create_ultimate_instruction(self, instructions: str, framework: str, language: str, styling: str, project_name: str) -> str:
         """
         Create framework-specific instruction by loading from template file.
         """
@@ -168,6 +170,7 @@ Return ONLY valid JSON with properly escaped strings:
                 framework=framework,
                 language=language,
                 styling=styling,
+                project_name=project_name,  # Add project name to template
                 file_ext=file_ext,
                 main_ext=main_ext,
                 config_files=config_files
@@ -180,7 +183,8 @@ Return ONLY valid JSON with properly escaped strings:
                                     instructions).replace("{framework}",
                                                           framework).replace("{language}",
                                                                              language).replace("{styling}",
-                                                                                               styling)
+                                                                                               styling).replace("{project_name}",
+                                                                                                                project_name)
 
     async def _call_llm(self, instruction: str) -> str:
         """Call Azure OpenAI with the ultimate instruction"""
@@ -221,7 +225,7 @@ Return ONLY valid JSON with properly escaped strings:
             self.logger.error(f"Azure OpenAI API call failed: {str(e)}")
             raise
 
-    def _parse_project_response(self, response: str) -> SimpleProjectResult:
+    def _parse_project_response(self, response: str, project_name: str) -> SimpleProjectResult:
         """Parse the AI's response into a structured project"""
         try:
             # Try to extract JSON from the response
@@ -242,7 +246,7 @@ Return ONLY valid JSON with properly escaped strings:
             project_data = json.loads(json_str)
 
             return SimpleProjectResult(
-                project_name=project_data.get("project_name", "AI Generated Project"),
+                project_name=project_name,  # Use user-provided project name
                 framework=project_data.get("framework", "React"),
                 language=project_data.get("language", "JavaScript"),
                 instructions=project_data.get("instructions", "AI generated web application"),
@@ -264,11 +268,11 @@ Return ONLY valid JSON with properly escaped strings:
 
             # Try a more aggressive fix and retry
             try:
-                fixed_json = self._aggressive_json_fix(json_str)
+                fixed_json = self._aggressive_json_fix(json_str, project_name)
                 project_data = json.loads(fixed_json)
                 self.logger.info("Successfully parsed JSON after aggressive fix")
                 return SimpleProjectResult(
-                    project_name=project_data.get("project_name", "AI Generated Project"),
+                    project_name=project_name,  # Use user-provided project name
                     framework=project_data.get("framework", "React"),
                     language=project_data.get("language", "JavaScript"),
                     instructions=project_data.get("instructions", "AI generated web application"),
@@ -373,7 +377,7 @@ Return ONLY valid JSON with properly escaped strings:
 
         return '\n'.join(result_lines)
 
-    def _aggressive_json_fix(self, json_str: str) -> str:
+    def _aggressive_json_fix(self, json_str: str, user_project_name: str) -> str:
         """More aggressive JSON fixing for severely malformed JSON"""
 
         # Last resort: try to extract key-value pairs and reconstruct valid JSON
@@ -382,7 +386,7 @@ Return ONLY valid JSON with properly escaped strings:
             import re
             import json
 
-            project_name = "AI Generated Project"
+            project_name = user_project_name  # Use user-provided project name
             framework = "React"
             language = "JavaScript"
             instructions = "AI generated web application"
@@ -443,7 +447,7 @@ Return ONLY valid JSON with properly escaped strings:
             # If even this fails, return minimal valid JSON
             import json
             return json.dumps({
-                "project_name": "Fallback Project",
+                "project_name": user_project_name,  # Use user-provided project name
                 "framework": "React",
                 "language": "JavaScript",
                 "instructions": "Fallback project due to parsing errors",

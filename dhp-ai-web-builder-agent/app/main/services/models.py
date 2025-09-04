@@ -9,6 +9,8 @@ class SimpleGenerationRequest(BaseModel):
     framework: str = Field(default="React", description="Frontend framework (React or Vue)")
     language: str = Field(default="JavaScript", description="Programming language (JS or TS)")
     styling: str = Field(default="TailwindCSS", description="Styling framework (TailwindCSS or NucleusCSS)")
+    projectName: str = Field(..., description="Name of the project to be generated")
+    template: str = Field(default="", description="Template to use for generation (for future use)")
 
     class Config:
         use_enum_values = True
