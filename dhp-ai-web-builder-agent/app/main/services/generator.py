@@ -144,27 +144,12 @@ Return ONLY valid JSON with properly escaped strings:
             if framework.lower() == 'vue':
                 main_ext = "ts"  # Vue uses .ts for TypeScript, not .tsx
                 config_files = '''
-    "tsconfig.json": "{\\"compilerOptions\\":
-    {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"],
-    \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false,
-    \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true,
-    \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true,
-    \\"noEmit\\": true, \\"jsx\\": \\"preserve\\"}, \\"include\\": [\\"src/**/*.ts\\",
-    \\"src/**/*.d.ts\\", \\"src/**/*.tsx\\", \\"src/**/*.vue\\"],
-    \\"references\\": [{\\"path\\": \\"./tsconfig.node.json\\"}]}",
-    "tsconfig.node.json": "{\\"compilerOptions\\": {\\"composite\\": true, \\"skipLibCheck\\": true,
-    \\"module\\": \\"ESNext\\", \\"moduleResolution\\": \\"bundler\\", \\"allowSyntheticDefaultImports\\": true},
-    \\"include\\": [\\"vite.config.ts\\"]}",
+    "tsconfig.json": "{\\"compilerOptions\\": {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"], \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false, \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true, \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true, \\"noEmit\\": true, \\"jsx\\": \\"preserve\\"}, \\"include\\": [\\"src/**/*.ts\\", \\"src/**/*.d.ts\\", \\"src/**/*.tsx\\", \\"src/**/*.vue\\", \\"vite.config.ts\\"]}",
     "src/vite-env.d.ts": "/// <reference types=\\"vite/client\\" />",'''
             else:
                 main_ext = "tsx"  # React uses .tsx for TypeScript
                 config_files = '''
-    "tsconfig.json": "{\\"compilerOptions\\":
-    {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"],
-    \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false,
-    \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true,
-    \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true,
-    \\"noEmit\\": true, \\"jsx\\": \\"react-jsx\\"}, \\"include\\": [\\"src\\"]},'''
+    "tsconfig.json": "{\\"compilerOptions\\": {\\"target\\": \\"ES2020\\", \\"lib\\": [\\"DOM\\", \\"DOM.Iterable\\", \\"ES6\\"], \\"allowJs\\": false, \\"skipLibCheck\\": true, \\"esModuleInterop\\": false, \\"allowSyntheticDefaultImports\\": true, \\"strict\\": true, \\"forceConsistentCasingInFileNames\\": true, \\"moduleResolution\\": \\"bundler\\", \\"resolveJsonModule\\": true, \\"isolatedModules\\": true, \\"noEmit\\": true, \\"jsx\\": \\"react-jsx\\"}, \\"include\\": [\\"src/**/*.ts\\", \\"src/**/*.tsx\\", \\"vite.config.ts\\"]}",'''
         else:
             file_ext = "js"
             if framework.lower() == 'vue':

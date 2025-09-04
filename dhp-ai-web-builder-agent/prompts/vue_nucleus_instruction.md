@@ -3,7 +3,14 @@ Create a STUNNING, ultra-modern Vue app for: {instructions}
 DESIGN EXCELLENCE REQUIREMENTS:
 - Framework: {framework} with {language}
 - Build: 7-15 files with seamless Vue Router navigation
-- Style: Advanced Nucleus CSS with CLEAN, MODERN aesthetics (NOT overly colorful)
+- Style:NUCLEUS CSS COMPONENT STYLING PATTERNS FOR VUE:
+- **Section Spacing**: Always use --nt-size-spacing-56 or --nt-size-spacing-72 between major sections
+- **Button Groups**: Ensure identical button heights and consistent spacing using gap property
+- **Form Alignment**: All form elements must align perfectly with consistent label widths and input spacing using v-model
+- **Hero Sections**: Center all content with proper text alignment and consistent padding
+- **Interactive States**: Use Vue's :class bindings with computed properties for consistent hover effects
+- **Conditional Styling**: Use v-bind:style with reactive data to apply Nucleus variables dynamically
+- **Responsive Components**: Implement responsive behavior using Nucleus breakpoint variables in computed propertiesd Nucleus CSS with CLEAN, MODERN aesthetics (NOT overly colorful)
 - Color Philosophy: Minimal, sophisticated, professional design using Nucleus design system
 - Animations: Subtle, smooth transitions and micro-interactions
 - Typography: Clean, readable fonts using Nucleus typography system
@@ -42,6 +49,18 @@ NUCLEUS CSS LAYOUT STANDARDS - CRITICAL:
 - Consistent component sizing across all pages using Nucleus variables
 - Use CSS Grid and Flexbox with Nucleus spacing variables
 - Maintain visual hierarchy using Nucleus typography and spacing scales
+
+PERFECT ALIGNMENT RULES - MANDATORY:
+- **Consistent Margins**: Use only Nucleus spacing variables (--nt-size-spacing-*) for ALL margins and padding
+- **Grid Alignment**: Use CSS Grid with gap: var(--nt-size-spacing-24) for consistent spacing between grid items
+- **Flexbox Alignment**: Use justify-content and align-items with consistent spacing using Nucleus variables
+- **Text Alignment**: Ensure headings, paragraphs, and buttons align perfectly using common baseline
+- **Vertical Rhythm**: Maintain consistent vertical spacing between sections using --nt-size-spacing-48 or --nt-size-spacing-56
+- **Card Alignment**: All cards must have identical padding: var(--nt-size-spacing-24) and margin: var(--nt-size-spacing-16)
+- **Button Alignment**: Buttons in the same row must have identical height and vertical alignment
+- **Image Alignment**: Images must be properly centered and sized with consistent aspect ratios
+- **Container Consistency**: All page sections must use .nb-container for consistent max-width and centering
+- **Navigation Alignment**: Navigation items must be perfectly aligned with consistent spacing
 
 CREATIVE FREEDOM & INTELLIGENCE - SMART ADAPTATION:
 - ANALYZE the user's instructions for complexity indicators
@@ -176,6 +195,22 @@ CRITICAL NUCLEUS CSS RULES:
 - Implement lazy loading for all route components
 - Ensure all components are properly imported and registered
 - NO Tailwind CSS classes or utilities
+
+PERFECT ALIGNMENT ENFORCEMENT - CRITICAL:
+- EVERY element must use Nucleus spacing variables for positioning
+- ALL cards, buttons, and components must have identical spacing patterns
+- NO inconsistent margins or padding - use systematic Nucleus spacing only
+- Grid items must align perfectly using CSS Grid with consistent gaps
+- Flexbox containers must use justify-content and align-items properly
+- Text elements must follow consistent baseline alignment
+- Navigation items must be perfectly spaced and aligned
+- Form elements must align in perfect columns with consistent spacing using v-model
+- Images must be consistently sized and positioned
+- Page sections must have identical padding and margin patterns
+- Header and footer must align perfectly with page content
+- Button groups must have identical heights and perfect alignment
+- Vue components must maintain consistent internal spacing and alignment
+- Router-link elements must align perfectly with surrounding content
 
 NUCLEUS CSS USAGE EXAMPLES FOR VUE - DETAILED:
 - **Buttons**: `<button class="nb-btn nb-btn--primary">Primary Button</button>`, `<button class="nb-btn nb-btn--secondary">Secondary Button</button>`, `<button class="nb-btn nb-btn.is-small">Small Button</button>`
