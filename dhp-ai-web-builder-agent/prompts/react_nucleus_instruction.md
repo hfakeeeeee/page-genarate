@@ -55,6 +55,63 @@ PERFECT ALIGNMENT RULES - MANDATORY:
 - **Container Consistency**: All page sections must use .nb-container for consistent max-width and centering
 - **Navigation Alignment**: Navigation items must be perfectly aligned with consistent spacing
 
+UI QUALITY ENHANCEMENT ADDENDUM — MANDATORY:
+Header & Navigation: Perfect Centering
+- Header Shell: Use .nb-container inside <header>; layout with display: grid; grid-auto-flow: column; align-items: center; justify-content: space-between; column-gap: var(--nt-size-spacing-24); min-height: var(--nt-size-spacing-56);.
+Vertical Centering: All header text and nav items are vertically centered within the header’s min-height.
+- Hit Area: Each nav item’s clickable region ≥ var(--nt-size-spacing-48) in height.
+- Alignment Rail: Left edge of logo, first headline, and main content share the same left rail.
+- Active/Focus States: Use var(--nt-color-action-primary-active) for active; maintain visible outline or box-shadow for :focus-visible.
+Equal-Height Cards & Uniform Boxes
+- Uniform Card Pattern (applies to all cards): Padding var(--nt-size-spacing-24), Radius var(--nt-size-radius-rounded), Border var(--nt-size-borders-container) solid var(--nt-color-grayscale-200), Shadow var(--nt-shadow-card).
+- Equal Height Rule: Grid containers must align-items: stretch; cards must display: flex; flex-direction: column; height: 100%;.
+- Consistent Internals: Card image (fixed aspect), title, meta, body, and CTA sections are always present (placeholders allowed) so heights match.
+- Line Clamp: Truncate long text to prevent uneven heights (-webkit-line-clamp: 2 for titles, 3 for body; provide graceful fallback).
+Sticky Footer on Short Pages
+- App Shell: Keep footer pinned to the bottom on short pages:
+html, body, #root { height: 100%; }
+.app-shell { min-height: 100dvh; display: flex; flex-direction: column; }
+main { flex: 1; }
+- Footer Spacing: Use var(--nt-size-spacing-24) for internal footer spacing; avoid arbitrary margins.
+Section & Grid Consistency
+- Section Spacing: Major sections use vertical padding top & bottom of var(--nt-size-spacing-56) (or --nt-size-spacing-72 for large hero).
+- Grid System: Use display: grid; gap: var(--nt-size-spacing-24); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));.
+- No Orphans: Ensure ≥ 2 items per row at ≥ 768px width; single column allowed below 768px.
+- Typography Baseline & Rhythm
+- Baseline Lock: Body text uses line-height: var(--nt-font-line-height-open); headings use Nucleus sizes.
+- Max Line Length: Long-form text constrained to ~60–75 characters.
+- Hierarchy: Use .nb-h1..nb-h6 and .nb-paragraph only; no ad-hoc font sizes.
+Image Ratios & Media Treatment
+- Hero: aspect-ratio: 3 / 2 (use https://placehold.co/1200x800?text=Hero+Image)
+- Cards: aspect-ratio: 4 / 3 (use https://placehold.co/400x300?text=Card+Image)
+- Avatars: 1 / 1 (use https://placehold.co/100x100?text=Avatar)
+- Object Fit: img { width: 100%; height: auto; aspect-ratio: set per context; object-fit: cover; }
+- No Layout Shift: Reserve image dimensions to avoid CLS.
+- Responsive Behavior (No Breaks)
+- Mobile-First with breakpoints at 576px, 768px, 1200px, 1500px.
+- Header Wrap: Nav converts to a menu button ≤ 768px; menu uses the same spacing tokens.
+- Equal Heights Persist: Cards remain equal height at all breakpoints with align-items: stretch; height: 100%;.
+Interaction & Motion
+- Micro-Interactions: Transitions (150–250ms) on hover/focus for cards and buttons:
+- transition: box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease;
+- Subtle elevation only (e.g., transform: translateY(-2px) on hover); avoid over-animation.
+- Color & Contrast Integrity
+- Tokens Only: All colors come from Nucleus tokens.
+- Contrast: Ensure WCAG AA for text; use --nt-color-font-reversed on dark backgrounds.
+
+UI QA CHECKLIST — AUTO-VERIFY BEFORE OUTPUT
+- The generated app must pass all items:
+- Header text and nav items are vertically centered across all routes.
+- Footer sits at the bottom on short-content pages (no mid-viewport floating).
+- Card grids show uniform card heights per row at every breakpoint.
+- All spacing uses only --nt-size-spacing-*; no raw px/rem values.
+- All sections use .nb-container and maintain identical alignment rails.
+- All images use placehold.co with explicit dimensions and stable aspect ratios.
+- Buttons in any row share identical heights and vertical alignment.
+- No text overflows or layout wraps that break alignment at 576/768/1200/1500px.
+- Focus states are visible and consistent for keyboard navigation.
+- No color outside the Nucleus palette; headings use --nt-color-font-heading.
+
 CREATIVE FREEDOM & INTELLIGENCE - SMART ADAPTATION:
 - ANALYZE the user's instructions for complexity indicators
 - IF user mentions "simple", "basic", "minimal", "just a few pages", "only need", "quick", "starter": CREATE 3-5 essential pages only
